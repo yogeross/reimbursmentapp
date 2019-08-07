@@ -39,9 +39,9 @@ public class AwsConnection {
             prop.load(input);
 
             //get the property value and print it out
-            System.out.println("url: " + prop.getProperty("url"));
-            System.out.println("user: " + prop.getProperty("user"));
-            System.out.println("pass: " + prop.getProperty("password"));
+//            System.out.println("url: " + prop.getProperty("url"));
+//            System.out.println("user: " + prop.getProperty("user"));
+//            System.out.println("pass: " + prop.getProperty("password"));
             
             try {
 				Class.forName(prop.getProperty("driver"));

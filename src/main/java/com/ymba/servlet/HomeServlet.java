@@ -32,9 +32,9 @@ public class HomeServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.getRequestDispatcher("login.html").forward(request, response);
 		
-		AwsConnection aws = AwsConnection.getInstance();
-		Connection c = aws.getConnection();
-		System.out.println("Connection made");
+		//AwsConnection aws = AwsConnection.getInstance();
+		//Connection c = aws.getConnection();
+		//System.out.println("Connection made");
 		
 	}
 
