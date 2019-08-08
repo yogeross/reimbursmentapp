@@ -8,12 +8,12 @@
     <body>
       <div class="log-form">
         <h2>Login to your account</h2>
-        <form id="login">
-          <input type="text" title="username" placeholder="username" />
-          <input type="password" title="username" placeholder="password" />
+        <form id="login" action="dashboard" method="POST">
+          <input type="text" name="username" placeholder="username" />
+          <input type="password" name="password" placeholder="password" />
           <button type="submit" value="login" class="btn">Login</button>
         </form>
-        <form action="TRMSRegister.html">
+        <form action="register">
             <button type="submit" value="register" class="btn">Register</button>
           </form>
       </div> 
