@@ -18,7 +18,7 @@ public class EventDaoImpl implements EventDao {
 
 	public static AwsConnection aws = AwsConnection.getInstance();
 	
-	public List<Event> geteventList() throws SQLException {
+	public List<Event> getEventList() throws SQLException {
 		List<Event> eventList = new ArrayList<Event>(); 
 		Connection conn= aws.getConnection();
 		Statement stmt= conn.createStatement();

@@ -8,6 +8,6 @@ import com.ymba.beans.Request;
 
 
 public interface RequestDao {
-	public List<Request> getrequestList() throws SQLException;
+	public List<Request> getRequestList() throws SQLException;
 
 }

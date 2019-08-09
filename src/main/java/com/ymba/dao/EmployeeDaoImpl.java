@@ -20,7 +20,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public static AwsConnection aws = AwsConnection.getInstance();
 
 		
-	public void create_employee(String firstname,String lastname, String username, String password,int departement_id,int position_id) throws SQLException {
+	public void createEmployee(String firstname,String lastname, String username, String password,int departement_id,int position_id) throws SQLException {
 		Connection conn = aws.getConnection();
 		String sql = "{ call insert_employee (?,?,?,?,?,?,?)";
 		CallableStatement call = conn.prepareCall(sql);
@@ -34,7 +34,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 		     
 		     
-	public void register_event( int event_typeid, String event_datetime, String location, 
+	public void registerEvent( int event_typeid, String event_datetime, String location, 
 								String description , String grading_format, 
 								String justification, Double cost) throws SQLException {
 		
@@ -54,7 +54,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 
 		
-	public void Claim_money (int employee_id, int event_id) {
+	public void claimMoney (int employee_id, int event_id) {
 
 		Connection conn = aws.getConnection(); 
 		String sql = "{ call insert_request (?,?)";
@@ -73,7 +73,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 	
 	
-	public void submit_grade(String grade, int event_id) throws SQLException {
+	public void submitGrade(String grade, int event_id) throws SQLException {
 		  Connection conn = aws.getConnection(); 
 		  String sql = "{ call insert_request (?,?)";
 		  CallableStatement call;
@@ -91,7 +91,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 	
 	
-	public void alter_amount_requested(Double amount, int request_id ) throws SQLException {
+	public void alterAmountRequested(Double amount, int request_id ) throws SQLException {
 		
 		Connection conn = aws.getConnection(); 
 		String sql = "{ call update_amount (?, ?)";
@@ -109,7 +109,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 		
 	
-	public void add_additional_info(String comments, int request_id) throws SQLException {
+	public void addInfo(String comments, int request_id) throws SQLException {
 		Connection conn = aws.getConnection(); 
 		String sql = "{ call update_amount (?, ?)";
 		
@@ -127,7 +127,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	
-	public String check_status(int request_id) throws SQLException {
+	public String checkStatus(int request_id) throws SQLException {
 		Connection conn = aws.getConnection(); 
 		String sql = "SELECT status FROM Request WHERE requestID = ?";
 		PreparedStatement ps;
@@ -147,7 +147,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 
-	public ArrayList<Employee> getAlldepartement(){
+	public ArrayList<Employee> getDepartmentList(){
 	
 		ArrayList<Employee> departementList = new ArrayList<Employee>(); 
 		Connection conn = aws.getConnection();
@@ -170,8 +170,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 	
 	
-	public void printAlldepartement() {
-		ArrayList<Employee> departementList = this.getAlldepartement();
+	public void printAllDepartments() {
+		ArrayList<Employee> departementList = this.getDepartmentList();
 		for(Employee u:departementList ) {
 			System.out.println(u.toString());
 		}

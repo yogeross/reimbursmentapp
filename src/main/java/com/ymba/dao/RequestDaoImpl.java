@@ -18,7 +18,7 @@ public class RequestDaoImpl implements RequestDao {
 	
 	public static AwsConnection aws = AwsConnection.getInstance();
 	
-	public List<Request> getrequestList() throws SQLException {
+	public List<Request> getRequestList() throws SQLException {
 		List<Request> requestList = new ArrayList<Request>(); 
 		Connection conn= aws.getConnection();
 		Statement stmt= conn.createStatement();
