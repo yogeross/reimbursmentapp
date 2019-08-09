@@ -1,18 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
 
-    </head>
-    <body>
-        <h1>Welcome to your Homepage</h1>
-         <div class="dashboardMenu">
-            <div class="diffDashboards">
-                <button>Reimbursement Form</button>
-                <button>Application Status</button>
-            </div>
-            <div class="tabContent">Reimbursement Content</div>
-            <div class="tabContent">Status Content</div>
-         </div>
-         <script type="text/javascript" src="TRMSHomepage.js"></script>
-    </body>
+<head>
+    <link rel="stylesheet" href="TRMS.css">
+</head>
+
+<body background="background.jpg">
+    <input type="radio" name="nav" id="one" checked="checked" />
+    <label for="one">Greeting</label>
+
+    <input type="radio" name="nav" id="two" />
+    <label for="two">Form</label>
+
+    <input type="radio" name="nav" id="three" />
+    <label for="three">Status</label>
+    
+    <article class="content one">
+        <h3>Welcome to your homepage</h3>
+        <p>Enjoy the experience</p>
+    </article>
+   
+    <article class="content two">
+        <div class="log-form">
+            <h2>Reimbursement Request Form</h2>
+            <form id="reimbursementForm">
+                <label style="display: inline-block; margin-right: 10px">Select Event Type:</label>
+                <select name="eventType" style="font-size: 0.75em; color: #757575;">
+                    <option value="certify">Certification</option>
+                    <option value="prep">Certification Preparation Classes</option>
+                    <option value="seminar">Seminar</option>
+                    <option value="training">Technical Training</option>
+                    <option value="course">University Courses</option>                    
+                    <option value="other">Other</option>
+                </select>
+                <br/><br/>
+                
+    
+                <div style="display: inline-block;">
+                    <label> Date of Event:</label>
+                    <input type="date" name="date" style="font-size: 0.9em; margin-right: 50px" required />
+                </div>
+                <div style="display: inline-block;">
+                    <label>Time of Event:</label>
+                    <input type="time" name="time" style="font-size: 0.9em; margin-right: 50px" required />
+                </div>
+    
+                
+                <input type="text" id="location" placeholder="Location" required />
+                <textarea id="description" placeholder="Event Description..." maxlength="500" rows="4" cols="52" required></textarea> <br/><br/>
+    
+                <input type="text" id="cost" placeholder="Price of Event" required />
+                <textarea id="justify" placeholder="Work-Related Justification..." maxlength="500" rows="4" cols="52" required></textarea> <br/><br/>
+    
+                <input type="text" id="gradeFormat" placeholder="Grading Format" required />
+                <button type="submit" class="btn" value="Submit Form">Submit Request</button>
+            </form>
+        </div>
+    </article>
+
+    <article class="content three">
+        <h3>Application Info</h3>
+        <p>List of forms sent in</p>
+    </article>
+    <script type="text/javascript" src="TRMSdashboard.js"></script>
+</body>
+<!--source https://codepen.io/howbizarre/pen/bEdIB-->
 </html>
