@@ -3,12 +3,12 @@
   <display-name>Project1</display-name>
   <servlet>
     <description></description>
-    <display-name>HomeServlet</display-name>
-    <servlet-name>HomeServlet</servlet-name>
-    <servlet-class>com.ymba.servlet.HomeServlet</servlet-class>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.ymba.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>HomeServlet</servlet-name>
+    <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
   <servlet>
