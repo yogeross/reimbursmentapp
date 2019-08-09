@@ -46,14 +46,14 @@ public class AwsConnection {
             try {
 				Class.forName(prop.getProperty("driver"));
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
+				// TODO Add meaningful error message and actually handle the error
 				e1.printStackTrace();
 			}
             
             try {
 				conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				// TODO Add meaningful error message and actually handle the error
 				e.printStackTrace();
 			}
 
@@ -67,5 +67,3 @@ public class AwsConnection {
 	
 }
 
-
-// conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
