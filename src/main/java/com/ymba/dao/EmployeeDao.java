@@ -14,8 +14,8 @@ public interface EmployeeDao {
 	public abstract void alterAmountRequested(Double amount, int request_id)throws SQLException;
 	public abstract void addInfo(String comments, int request_id) throws SQLException;
 	public abstract String checkStatus (int request_id) throws SQLException;
-	public abstract ArrayList <Employee> getDepartmentList()throws SQLException;
-	public abstract void printAllDepartments()throws SQLException;
+	public abstract ArrayList <Employee> getDepartmentList() throws SQLException;
+	public abstract void printAllDepartments() throws SQLException;
 	
 
 }

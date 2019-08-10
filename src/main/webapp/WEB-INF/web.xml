@@ -30,6 +30,7 @@
   <servlet-mapping>
     <servlet-name>DashboardServlet</servlet-name>
     <url-pattern>/dashboard</url-pattern>
+
   </servlet-mapping>
   <servlet>
     <description></description>

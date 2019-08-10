@@ -18,6 +18,53 @@ import com.ymba.connection.AwsConnection;
 public class EmployeeDaoImpl implements EmployeeDao {
 	
 	public static AwsConnection aws = AwsConnection.getInstance();
+	
+	public static boolean doesEmployeeExist(String username) {
+		Connection conn = aws.getConnection();
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs= stmt.executeQuery("SELECT * FROM Employee WHERE EmployeeID="+username);
+			
+			if (rs.getMetaData().getColumnCount() == 0) {
+				return false;
+			} else {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			// TODO actually handle this exception
+			e.printStackTrace();
+		}
+
+		return false;
+		
+	}
+	
+	public static boolean checkCredentials(String username, String password) {
+		Connection conn = aws.getConnection();
+		
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs= stmt.executeQuery("SELECT * FROM Employee WHERE EmployeeID="+username);
+			
+			if (rs.getString("USERNAME").equals(username) && rs.getString("PASSWORD").equals(password)) {
+				return true;
+			} else {
+				return false;
+			}
+			
+		} catch (SQLException e) {
+			// TODO actually handle this exception
+			e.printStackTrace();
+		}
+
+		return false;
+		
+		
+	}
 
 		
 	public void createEmployee(String firstname,String lastname, String username, String password,int departement_id,int position_id) throws SQLException {
