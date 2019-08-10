@@ -28,13 +28,13 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Im IN THE GET METHOD");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		PrintWriter out = response.getWriter();
 		out.println(request.getParameter("username"));
 		out.println(request.getParameter("password"));
-		
-		
 		
 		
 	}
@@ -44,7 +44,7 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("FUCK!");
 		
 		if(checkCredentials(request.getParameter("username"), request.getParameter("password"))) {
 			// TODO Display the dashboard
@@ -52,13 +52,19 @@ public class DashboardServlet extends HttpServlet {
 			response.sendRedirect("dashboard.html");
 			return;
 		} else {
-			request.getRequestDispatcher("home").forward(request, response);
+			
+			System.out.println("Login Failed");
+			response.sendRedirect("home");
+			return;
 		}
 		
 	}
 	
 	public static boolean checkCredentials(String username, String password) {
 		Connection conn = AwsConnection.getInstance().getConnection();
+		System.out.println(username);
+		System.out.println(password);
+		
 		
 		Statement stmt;
 		try {
@@ -73,6 +79,7 @@ public class DashboardServlet extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			// TODO actually handle this exception
+			System.out.println("LOGIN EXCEPTION");
 			e.printStackTrace();
 		}
 

@@ -32,6 +32,18 @@ public class LoginServlet extends HttpServlet {
 		//Connection c = aws.getConnection();
 		//System.out.println("Connection made");
 		
+		
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		doGet(request, response);
+		
+	}
+	
+	
 }
