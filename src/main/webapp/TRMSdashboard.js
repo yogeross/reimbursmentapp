@@ -1,22 +1,26 @@
-function chooseTab() {
-    console.log("in choosetab");
-    alert("clicked");
-    //let tabcontent = document.getElementsByClassName("tabcontent");
-//     for (let i = 0; i < tabcontent.length; i++) {
-//       tabcontent[i].style.display = "none";
-//     }
-//     let tablinks = document.getElementsByClassName("tablink");
-//     for (let i = 0; i < tablinks.length; i++) {
-//       tablinks[i].style.backgroundColor = "";
-//     }
-//     document.getElementById(pageName).style.display = "block";
-//     elmnt.style.backgroundColor = color;
-   }
-  
-  
-  
-window.onload=function(){
-    console.log("in onload");
-//document.getElementById("defaultOpen").click();
-document.getElementsByClassName("tabs").add ("click",chooseTab);
-}    
+
+function loadPastRequests(request){
+    document.getElementById("event_id").innerHTML=request.event_id;
+    document.getElementById("date").innerHTML=request.date;
+    document.getElementById("status").innerHTML=request.status;
+    document.getElementById("empComments").innerHTML=request.empComments;
+    document.getElementById("denialReason").innerHTML=request.denialReason;
+    document.getElementById("amountApproval").innerHTML=request.amountApproval;
+    document.getElementById("supeID").innerHTML=request.supeID;
+    document.getElementById("supeApprovalDate").innerHTML=request.supeApprovalDate;
+    document.getElementById("headID").innerHTML=request.headID;
+    document.getElementById("headApprovalDate").innerHTML=request.headApprovalDate;
+    document.getElementById("bencoID").innerHTML=request.bencoID;
+    document.getElementById("bencoApprovalDate").innerHTML=request.bencoApprovalDate;
+
+}
+
+function getRequests(){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            var request =JSON.parse(xhr.responseText);
+            loadPastRequests(request);
+        }
+    }
+}

@@ -3,11 +3,11 @@ package com.ymba.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.ymba.beans.Request;
+import com.ymba.beans.CurrentRequest;
 
 
 
 public interface RequestDao {
-	public List<Request> getRequestList() throws SQLException;
+	public List<CurrentRequest> getRequestList() throws SQLException;
 
 }

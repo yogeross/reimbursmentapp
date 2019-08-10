@@ -1,13 +1,20 @@
 package com.ymba.beans;
 
-import java.sql.Date;
-
-public class Employee extends Request  {
-	String firstname, lastname ,username, password;
-	int departement_id,position_id ,supervisor_id;
+public class Employee   {
+	private String firstname;
+	private String lastname; 
+	private String username;
+	private String password;
+	private int departement_id;
+	private int position_id ;
+	private int supervisor_id;
+	
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public Employee(int employee_id, int event_id, String firstname, String lastname, String username, String password,
 			int departement_id, int position_id, int supervisor_id) {
-		super(employee_id, event_id);
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
@@ -60,10 +67,9 @@ public class Employee extends Request  {
 	}
 	@Override
 	public String toString() {
-		return "Employee [" + (firstname != null ? "firstname=" + firstname + ", " : "")
-				+ (lastname != null ? "lastname=" + lastname + ", " : "")
-				+ (username != null ? "username=" + username + ", " : "")
-				+ (password != null ? "password=" + password + ", " : "") + "departement_id=" + departement_id
-				+ ", position_id=" + position_id + ", supervisor_id=" + supervisor_id + "]";
+		return "Employee [firstname=" + firstname + ", lastname=" + lastname + ", username=" + username + ", password="
+				+ password + ", departement_id=" + departement_id + ", position_id=" + position_id + ", supervisor_id="
+				+ supervisor_id + "]";
 	}
+	
 }
