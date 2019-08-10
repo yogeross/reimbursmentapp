@@ -12,10 +12,9 @@ function loadPastRequests(request){
     document.getElementById("headApprovalDate").innerHTML=request.headApprovalDate;
     document.getElementById("bencoID").innerHTML=request.bencoID;
     document.getElementById("bencoApprovalDate").innerHTML=request.bencoApprovalDate;
-
 }
 
-function getRequests(){
+function getPastRequests(){
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         if(xhr.readyState==4 && xhr.status==200){
