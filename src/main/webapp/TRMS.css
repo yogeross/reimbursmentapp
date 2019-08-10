@@ -110,8 +110,19 @@ input, .content {
 
 #one:checked ~ .one,
 #two:checked ~ .two,
-#three:checked ~ .three {display: block;}
-
+#three:checked ~ .three 
+{display: block;}
+.logout{
+  cursor: pointer;
+  background: #999;
+  height: 25px;
+  padding: 5px 10px;
+  display: inline-block;
+  text-align: center;
+  color:black;
+  font: normal 1em/150% Sans-Serif;
+  margin-right: -3px;
+}
 label {
   cursor: pointer;
   background: #999;
@@ -131,5 +142,7 @@ h3, p {
   text-indent: 25px;
   text-align: justify;
 }
+
+
 
 

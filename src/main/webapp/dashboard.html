@@ -15,6 +15,8 @@
     <input type="radio" name="nav" id="three" />
     <label for="three">Status</label>
     
+    <label for="four" onclick="logout()">Logout</label>
+    
     <article class="content one">
         <h3>Welcome to your homepage</h3>
         <p>Enjoy the experience</p>
@@ -25,7 +27,7 @@
             <h2>Reimbursement Request Form</h2>
             <form id="reimbursementForm">
                 <label style="display: inline-block; margin-right: 10px">Select Event Type:</label>
-                <select name="eventType" style="font-size: 0.75em; color: #757575;">
+                <select name="eventType" onchange="estimateCost()" id="eventType" style="font-size: 0.75em; color: #757575;">
                     <option value="certify">Certification</option>
                     <option value="prep">Certification Preparation Classes</option>
                     <option value="seminar">Seminar</option>
@@ -38,7 +40,7 @@
     
                 <div style="display: inline-block;">
                     <label> Date of Event:</label>
-                    <input type="date" name="date" style="font-size: 0.9em; margin-right: 50px" required />
+                    <input type="date" name="date" id="date" style="font-size: 0.9em; margin-right: 50px" required />
                 </div>
                 <div style="display: inline-block;">
                     <label>Time of Event:</label>
@@ -49,11 +51,13 @@
                 <input type="text" id="location" placeholder="Location" required />
                 <textarea id="description" placeholder="Event Description..." maxlength="500" rows="4" cols="52" required></textarea> <br/><br/>
     
-                <input type="text" id="cost" placeholder="Price of Event" required />
+                <input type="number"  id="cost" placeholder="Price of Event" onchange="estimateCost()" required />
+                <input type="text" id="estimate"  readonly/>
                 <textarea id="justify" placeholder="Work-Related Justification..." maxlength="500" rows="4" cols="52" required></textarea> <br/><br/>
-    
+                
+                
                 <input type="text" id="gradeFormat" placeholder="Grading Format" required />
-                <button type="submit" class="btn" value="Submit Form">Submit Request</button>
+                <button type="submit" class="btn" id="submitForm" value="Submit Form">Submit Request</button>
             </form>
         </div>
     </article>
@@ -62,6 +66,8 @@
         <h3>Application Info</h3>
         <p>List of forms sent in</p>
     </article>
+    
+    
     <script type="text/javascript" src="TRMSdashboard.js"></script>
 </body>
 <!--source https://codepen.io/howbizarre/pen/bEdIB-->
