@@ -114,7 +114,7 @@ input, .content {
 
 label {
   cursor: pointer;
-  background: #dddddd;
+  background: #999;
   height: 25px;
   padding: 5px 10px;
   display: inline-block;
