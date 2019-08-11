@@ -22,7 +22,7 @@ import com.ymba.dao.EmployeeDaoImpl;
  */
 public class DashboardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private EmployeeDaoImpl edi= new EmployeeDaoImpl();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -44,13 +44,37 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("FUCK!");
+		
 		
 		if(checkCredentials(request.getParameter("username"), request.getParameter("password"))) {
-			// TODO Display the dashboard
-			System.out.println("Login success!");
-			response.sendRedirect("dashboard.html");
-			return;
+			int employeePosition = edi.getEmployee(request.getParameter("username")).getPosition_id();
+			if(employeePosition==1) {//normal dashboard
+				System.out.println("Login success!");
+				
+				response.sendRedirect("dashboard.html");
+				return;
+				}
+			else if(employeePosition==2) {//supervisor dashboard
+				// TODO Display the dashboard
+				System.out.println("Login success!");
+				//re.forward("supeDashboard.html");
+				request.getRequestDispatcher("supeDashboard.html").forward(request, response);
+				return;
+				}
+			else if (employeePosition==3) {// head of department dashboard
+				// TODO Display the dashboard
+				System.out.println("Login success!");
+				//response.sendRedirect("deptHeadDashboard.html");
+				request.getRequestDispatcher("deptHeadDashboard.html").forward(request, response);
+				return;
+			}
+			else {//benco dashboard
+				// TODO Display the dashboard
+				System.out.println("Login success!");
+				request.getRequestDispatcher("bencoDashboard.html").forward(request, response);
+				return;
+			}
+			
 		} else {
 			
 			System.out.println("Login Failed");

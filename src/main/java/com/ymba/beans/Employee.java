@@ -1,6 +1,7 @@
 package com.ymba.beans;
 
 public class Employee   {
+	private int employee_id;
 	private String firstname;
 	private String lastname; 
 	private String username;
@@ -8,13 +9,15 @@ public class Employee   {
 	private int department_id;
 	private int position_id ;
 	private int supervisor_id;
+	private double balance;
 	
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Employee(int employee_id, int event_id, String firstname, String lastname, String username, String password,
-			int department_id, int position_id, int supervisor_id) {
+	public Employee(int employee_id, int department_id,int position_id,String firstname, String lastname, String username,
+			String password,double balance, int supervisor_id) {
+		this.employee_id=employee_id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
@@ -22,6 +25,18 @@ public class Employee   {
 		this.department_id = department_id;
 		this.position_id = position_id;
 		this.supervisor_id = supervisor_id;
+	}
+	public int getEmployeeID() {
+		return employee_id;
+	}
+	public void setEmployeeID(int employee_id) {
+		this.employee_id = employee_id;
+	}
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 	public String getFirstname() {
 		return firstname;

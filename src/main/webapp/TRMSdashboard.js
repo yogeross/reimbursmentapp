@@ -86,6 +86,7 @@ function loadPastRequests(request, table){
 }
 
 function getPastRequests(){
+	let username=document.getElementById("username").value;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         if(xhr.readyState==4 && xhr.status==200){
@@ -93,6 +94,8 @@ function getPastRequests(){
             buildRequestTable(request);
         }
     }
+    xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username="+username,true);
+    xhr.send();
 }
 
 function lateSubmission(event){

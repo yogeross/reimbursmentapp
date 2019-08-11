@@ -155,7 +155,29 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 	}
 		
-	
+	public static Employee getEmployee(String username) {
+		Employee employee=null;
+		Connection conn = aws.getConnection();
+		String sql = "SELECT * FROM employee WHERE username=?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1,username);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				employee=new Employee(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getInt(9));
+				return employee;
+			}
+			else{
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
 	public void addInfo(String comments, int request_id) throws SQLException {
 		Connection conn = aws.getConnection(); 
 		String sql = "{ call update_amount (?, ?)";
@@ -205,7 +227,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ResultSet rs= stmt.executeQuery("SELECT Dept_Name FROM Employee a INNER JOIN departement b on a.PK_Dept_id=b.PK_Dept_id");
 			Employee u = null;
 			while (rs.next()) {
-				u = new Employee (rs.getInt(1),rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),rs.getInt(7),rs.getInt(8),rs.getInt(9));
+				u = new Employee(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getInt(9));
 				departementList.add(u); 
 			}
 		} catch (SQLException e) {
