@@ -20,7 +20,7 @@ function buildRequestTable(request){
     table+='</tr>';
     for (let r=0;r<rows;r++){
         table+='<tr>';
-        table=loadPastRequests(request[r],table);
+        table=loadPastRequests(request,table);
         table+='</tr>';
     }
     document.getElementById("requests").insertAdjacentHTML('beforeend','<table border=1>'+table+'</table>');
@@ -87,10 +87,13 @@ function loadPastRequests(request, table){
 
 function getPastRequests(){
 	let username=document.getElementById("username").value;
+	console.log("TEST");
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         if(xhr.readyState==4 && xhr.status==200){
             var request =JSON.parse(xhr.responseText);
+            console.log("Printing request to log");
+            console.log(request);
             buildRequestTable(request);
         }
     }
@@ -114,4 +117,14 @@ function lateSubmission(event){
       document.getElementById("submitForm").disabled=false; //reenable in case it was disabled before
     }}
 
-document.querySelector("#date").addEventListener("change",lateSubmission,true)
+window.onLoad = function(){
+	console.log("ON LOAD");
+	getPastRequests();
+};
+
+document.querySelector("#date").addEventListener("change",lateSubmission,true);
+
+
+
+
+
