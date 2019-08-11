@@ -9,7 +9,7 @@ public class CurrentRequest {
 	private String status;
 	private String empComments;
 	private String denialReason;
-	private double amountApproval;
+	private double amountApproved;
 	private int supeID;
 	private String supeApprovalDate;
 	private int headID;
@@ -26,7 +26,7 @@ public class CurrentRequest {
 		this.status=status;
 		this.empComments=empComments;
 		this.denialReason=denialReason;
-		this.amountApproval=amountApproval;
+		this.amountApproved=amountApproval;
 		this.supeID=supeID;
 		this.supeApprovalDate=supeApprovalDate;
 		this.headID=headID;
@@ -78,11 +78,11 @@ public class CurrentRequest {
 	}
 
 	public double getAmountApproval() {
-		return amountApproval;
+		return amountApproved;
 	}
 
 	public void setAmountApproval(double amountApproval) {
-		this.amountApproval = amountApproval;
+		this.amountApproved = amountApproval;
 	}
 
 	public int getSupeID() {
@@ -137,7 +137,7 @@ public class CurrentRequest {
 	public String toString() {
 		return "ReimbursementRequest [employee_id=" + employee_id + ", event_id=" + event_id + ", date=" + date
 				+ ", status=" + status + ", empComments=" + empComments + ", denialReason=" + denialReason
-				+ ", amountApproval=" + amountApproval + ", supeID=" + supeID + ", supeApprovalDate=" + supeApprovalDate
+				+ ", amountApproval=" + amountApproved + ", supeID=" + supeID + ", supeApprovalDate=" + supeApprovalDate
 				+ ", headID=" + headID + ", headApprovalDate=" + headApprovalDate + ", bencoID=" + bencoID
 				+ ", bencoApprovalDate=" + bencoApprovalDate + "]";
 	}
