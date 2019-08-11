@@ -5,7 +5,7 @@ public class Employee   {
 	private String lastname; 
 	private String username;
 	private String password;
-	private int departement_id;
+	private int department_id;
 	private int position_id ;
 	private int supervisor_id;
 	
@@ -14,12 +14,12 @@ public class Employee   {
 		// TODO Auto-generated constructor stub
 	}
 	public Employee(int employee_id, int event_id, String firstname, String lastname, String username, String password,
-			int departement_id, int position_id, int supervisor_id) {
+			int department_id, int position_id, int supervisor_id) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
-		this.departement_id = departement_id;
+		this.department_id = department_id;
 		this.position_id = position_id;
 		this.supervisor_id = supervisor_id;
 	}
@@ -48,10 +48,10 @@ public class Employee   {
 		this.password = password;
 	}
 	public int getDepartement_id() {
-		return departement_id;
+		return department_id;
 	}
 	public void setDepartement_id(int departement_id) {
-		this.departement_id = departement_id;
+		this.department_id = departement_id;
 	}
 	public int getPosition_id() {
 		return position_id;
@@ -68,7 +68,7 @@ public class Employee   {
 	@Override
 	public String toString() {
 		return "Employee [firstname=" + firstname + ", lastname=" + lastname + ", username=" + username + ", password="
-				+ password + ", departement_id=" + departement_id + ", position_id=" + position_id + ", supervisor_id="
+				+ password + ", departement_id=" + department_id + ", position_id=" + position_id + ", supervisor_id="
 				+ supervisor_id + "]";
 	}
 	
