@@ -155,7 +155,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		
 	}
 		
-	public static Employee getEmployee(String username) {
+	public Employee getEmployee(String username) {
 		Employee employee=null;
 		Connection conn = aws.getConnection();
 		String sql = "SELECT * FROM employee WHERE username=?";
