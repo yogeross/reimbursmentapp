@@ -19,9 +19,9 @@ public class Event {
 	}
 
 
-	public Event(int employee_id, int event_id, int event_type_id, String event_datetime, String location,
+	public Event(int event_id, int event_type_id, String event_datetime, String location,
 			String description, String grading_format, String justification, String work_missed, double event_cost) {
-		this.event_id=employee_id;
+		this.event_id=event_id;
 		this.event_type_id = event_type_id;
 		this.event_datetime = event_datetime;
 		this.location = location;

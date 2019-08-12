@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ymba.beans.Employee;
@@ -19,6 +20,20 @@ import com.ymba.dao.RequestDaoImpl;
 public class ApproveReimbursementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private int getNextStatus(int currentEmployeeType) {
+		if (currentEmployeeType == 2) {
+			return 5;
+		} else if (currentEmployeeType == 3) {
+			return 6;
+		} else if (currentEmployeeType == 4) {
+			return 1;
+		} else if (currentEmployeeType == 5) {
+			return 1;
+		} else {
+			return -1;
+		}
+	}
+	
 
 
 	/**
@@ -50,8 +65,19 @@ public class ApproveReimbursementServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+
+		int requestId = Integer.valueOf(request.getParameter("requestID"));
+		EmployeeDaoImpl edao = new EmployeeDaoImpl();
+		RequestDaoImpl rdao = new RequestDaoImpl();
+		HttpSession session = request.getSession();
+		String user =  (String) session.getAttribute("employeeUsername");
+		Employee currentEmployee = edao.getEmployee(user);
+		
+		int newStatus = getNextStatus(currentEmployee.getPositionId());
+		rdao.updateStatus(newStatus, requestId);
+		
+		
+		request.getRequestDispatcher("dashboard").forward(request, response);
 	}
 
 }

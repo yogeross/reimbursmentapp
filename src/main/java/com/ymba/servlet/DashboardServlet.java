@@ -49,7 +49,18 @@ public class DashboardServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		if(checkCredentials(request.getParameter("username"), request.getParameter("password"))) {
-			int employeePosition = edi.getEmployee(request.getParameter("username")).getPosition_id();
+			
+			
+			String user =  (String) session.getAttribute("employeeUsername");
+			int employeePosition;
+			if (user == null) {
+				employeePosition = edi.getEmployee(request.getParameter("username")).getPositionId();
+			} else {
+				employeePosition = edi.getEmployee(user).getPositionId();
+			}
+			
+			
+			
 			if(employeePosition==1) {//normal dashboard
 				System.out.println("Login success!");
 				Cookie userCookie = new Cookie("username", request.getParameter("username"));
@@ -63,7 +74,7 @@ public class DashboardServlet extends HttpServlet {
 				return;
 				}
 			else if(employeePosition==2) {//supervisor dashboard
-				// TODO Display the dashboard
+				
 				System.out.println("Login success!");
 				//re.forward("supeDashboard.html");
 				Cookie userCookie = new Cookie("username", request.getParameter("username"));
@@ -76,7 +87,7 @@ public class DashboardServlet extends HttpServlet {
 				return;
 				}
 			else if (employeePosition==3) {// head of department dashboard
-				// TODO Display the dashboard
+				
 				System.out.println("Login success!");
 				//response.sendRedirect("deptHeadDashboard.html");
 				Cookie userCookie = new Cookie("username", request.getParameter("username"));
@@ -89,7 +100,7 @@ public class DashboardServlet extends HttpServlet {
 				return;
 			}
 			else {//benco dashboard
-				// TODO Display the dashboard
+				
 				System.out.println("Login success!");
 				Cookie userCookie = new Cookie("username", request.getParameter("username"));
 				Cookie passwordCookie = new Cookie("password", request.getParameter("username"));

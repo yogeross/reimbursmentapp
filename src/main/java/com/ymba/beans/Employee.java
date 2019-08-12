@@ -62,16 +62,16 @@ public class Employee   {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getDepartement_id() {
+	public int getDepartementId() {
 		return department_id;
 	}
-	public void setDepartement_id(int departement_id) {
+	public void setDepartementId(int departement_id) {
 		this.department_id = departement_id;
 	}
-	public int getPosition_id() {
+	public int getPositionId() {
 		return position_id;
 	}
-	public void setPosition_id(int position_id) {
+	public void setPositionId(int position_id) {
 		this.position_id = position_id;
 	}
 	public int getSupervisor_id() {

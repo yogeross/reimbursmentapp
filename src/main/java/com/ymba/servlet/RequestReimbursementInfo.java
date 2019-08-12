@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ymba.dao.RequestDaoImpl;
+
 /**
  * Servlet implementation class RequestReimbursementInfo
  */
@@ -16,7 +18,12 @@ public class RequestReimbursementInfo extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		int requestId = Integer.valueOf(request.getParameter("requestID"));
+		RequestDaoImpl rdao = new RequestDaoImpl();
+
+		rdao.updateStatus(3, requestId);
+		request.getRequestDispatcher("dashboard").forward(request, response);
+		
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.ymba.dao;
 
+import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +27,7 @@ public class EventDaoImpl implements EventDao {
 		ResultSet rs= stmt.executeQuery("SELECT * FROM Event");
 		Event s= null;
 		while(rs.next()) {
-			s= new Event(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9),rs.getDouble(10));
+			s= new Event(rs.getInt("event_id"),rs.getInt("fk_event_type_id"),rs.getString("event_datetime"),rs.getString("event_location"),rs.getString("event_description"),rs.getString("grading_format"),rs.getString("justification"),rs.getString("work_missed"), rs.getDouble("event_cost"));
 			eventList.add(s);
 			
 		}
@@ -44,7 +45,7 @@ public class EventDaoImpl implements EventDao {
 			ResultSet rs = ps.executeQuery();
 			rs.next();
 			//return new Event(employee_id, event_id,     event_type_id, event_datetime, location,       description,   grading_format, justification, work_missed, event_cost)
-			return new Event(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getDouble(10));
+			return new Event(rs.getInt("event_id"),rs.getInt("fk_event_type_id"),rs.getString("event_datetime"),rs.getString("event_location"),rs.getString("event_description"),rs.getString("grading_format"),rs.getString("justification"),rs.getString("work_ missed"), rs.getDouble("event_cost"));
 		} catch (SQLException e) { 
 			// TODO Fix error handling
 			e.printStackTrace();
@@ -58,18 +59,23 @@ public class EventDaoImpl implements EventDao {
  
 	public void registerEvent( int event_typeid, String event_datetime, String location, 
 								String description , String grading_format, 
-								String justification, Double cost) throws SQLException {
+								String justification, Double cost, String workMissed, Blob eventAttachment, Blob approvalAttachment, String approvalType, int employeeId) throws SQLException {
 
 		Connection conn = aws.getConnection();
-		String sql = "{ call insert_event(?,?,?,?,?,?,?)";
+		String sql = "{ call insert_event_and_request(?,?,?,?,?,?,?, ?, ?, ?, ?, ?)";
 		CallableStatement call = conn.prepareCall(sql);
 		call.setInt(1, event_typeid);
 		call.setString(2, event_datetime);
-		call.setString(3,location );
+		call.setString(3, location);
 		call.setString(4, description);
-		call.setString(5, grading_format);
+		call.setDouble(5, cost);
 		call.setString(6, justification);
-		call.setDouble(7, cost);
+		call.setString(7, grading_format);
+		call.setString(8, workMissed);
+		call.setBlob(9, eventAttachment);
+		call.setBlob(10, approvalAttachment);
+		call.setString(11, approvalType);
+		call.setInt(12, employeeId);
 		
 		call.execute();	
 }

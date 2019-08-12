@@ -52,19 +52,27 @@ public class NewReimbursementServlet extends HttpServlet {
 		String justification = request.getParameter("justify");
 		String gradingFormat = request.getParameter("gradeFormat");
 		
-		
-		
+		String workMissed = request.getParameter("missed");
+		String approvalType = request.getParameter("approval");
 		
 		
 		double cost = Double.valueOf(request.getParameter("cost"));
 		
+		HttpSession session = request.getSession();
+		EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
+		Employee currentEmployee = employeeDao.getEmployee( (String) session.getAttribute("employeeUsername"));
+		
+		
+		
 		try {
-			edao.registerEvent(eventTypeId, eventDateTime, location, description, gradingFormat, justification, cost);
+			edao.registerEvent(eventTypeId, eventDateTime, location, description, gradingFormat, justification, cost, workMissed, null, null, approvalType, currentEmployee.getEmployeeID());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		
+		/*
 		List<Event> eventList;
 		
 		try {
@@ -75,19 +83,24 @@ public class NewReimbursementServlet extends HttpServlet {
 			return;
 		}
 		int eventId = -1;
+		
+		
+		System.out.println("************** Printing eventlist **********");
 		for (Event e : eventList) {
+			System.out.println(e);
 			if (e.getEvent_type_id() == eventTypeId && e.getEvent_datetime() == eventDateTime) {
 				// lets assume it's the correct event
 				eventId = e.getEventId();
 			}
 		}
+		System.out.println("THIS IS THE EVENT: "+eventId);
 		HttpSession session = request.getSession();
 		EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
-		Employee currentEmployee = employeeDao.getEmployee( (String) session.getAttribute("username"));
+		Employee currentEmployee = employeeDao.getEmployee( (String) session.getAttribute("employeeUsername"));
 		
 		
 		rdao.createRequest(currentEmployee.getEmployeeID(), eventId);
-		
+		*/
 		
 //		for (String paramName : inputs.keySet()) {
 //			System.out.println(paramName);
