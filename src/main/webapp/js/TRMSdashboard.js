@@ -12,7 +12,37 @@ function readCookie(name) {
     return null;
 }
 
-
+function estimateCost(){
+    let eventType= document.querySelector("#eventType");
+    let event=eventType.options[eventType.selectedIndex].value;
+    let cost= document.querySelector("#cost").value;
+    let estimate=0;
+    switch (event){
+        case "certify":
+            document.querySelector("#estimate").value="Estimated Cost we cover: $"+cost.toString();
+            break;
+        case "prep":
+                estimate=cost*.75;
+                document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
+                break;
+        case "seminar":
+            estimate=cost*.6;
+            document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
+            break;
+        case "training":
+            estimate= cost*.9;
+                document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
+                break;
+        case "course":
+                estimate=cost*.8;
+                document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
+                break;
+        case "other":
+                estimate=cost*.3;
+                document.querySelector("#estimate").value="Estimated Cost we cover: $"+cost.toString();
+                break;
+    }
+}
 
 
 function logout(){
@@ -30,11 +60,6 @@ function buildRequestTable(request){
     table+='<th>' +"Denial Reason"+'</th>';
     table+='<th>' +"Amount Approval"+'</th>';
     table+='<th>' +"Supervisor ID"+'</th>';
-    table+='<th>' +"Supervisor Approval Date"+'</th>';
-    table+='<th>' +"Head ID"+'</th>';
-    table+='<th>' +"Head Approval Date"+'</th>';
-    table+='<th>' +"Benco ID"+'</th>';
-    table+='<th>' +"Benco Approval Date"+'</th>';
     table+='</tr>';
     for (let r=0;r<rows;r++){
         table+='<tr>';
@@ -47,16 +72,10 @@ function buildRequestTable(request){
 function loadPastRequests(request, table){
     table+='<td>'+request.event_id+'</td>';
     table+='<td>' +request.date+'</td>';
-    table+='<td>' +request.status+'</td>';
+    table+='<td>' +getStat(request.status)+'</td>';
     table+='<td>' +request.empComments+'</td>';
     table+='<td>' +request.denialReason+'</td>';
     table+='<td>' +request.amountApproval+'</td>';
-    table+='<td>' +request.supeID+'</td>';
-    table+='<td>' +request.supeApprovalDate+'</td>';
-    table+='<td>' +request.headID+'</td>';
-    table+='<td>' +request.headApprovalDate+'</td>';
-    table+='<td>' +request.bencoID+'</td>';
-    table+='<td>' +request.bencoApprovalDate+'</td>';
     return table;
 }
 
@@ -109,7 +128,7 @@ function loadPastRequestsForBenco(request,table){
     table+='<td>'+request.request_id+'</td>';
     table+='<td>'+request.event_id+'</td>';
     table+='<td>' +request.date+'</td>';
-    table+='<td>' +request.status+'</td>';
+    table+='<td>' +getStat(request.status)+'</td>';
     table+='<td>' +request.empComments+'</td>';
     table+='<td>' +request.denialReason+'</td>';
     table+='<td>' +request.amountApproval+'</td>';
@@ -122,7 +141,7 @@ function loadPastRequestsForSupervisorAndHead(request,table){
     table+='<td >'+request.request_id+'</td>';
     table+='<td>'+request.event_id+'</td>';
     table+='<td>' +request.date+'</td>';
-    table+='<td>' +request.status+'</td>';
+    table+='<td>' +getStat(request.status)+'</td>';
     table+='<td>' +request.empComments+'</td>';
     table+='<td>' +request.denialReason+'</td>';
     table+='<td>' +request.amountApproval+'</td>';
@@ -131,7 +150,26 @@ function loadPastRequestsForSupervisorAndHead(request,table){
            '<button type="submit" formaction="requestInfo-reimbursment">Request Info</button>'+'</form>'+'</td>';
     return table
 }
-
+function getStat(id){
+    if(id==1){
+        return "Approved";
+    }
+    if(id==2){
+        return "Denied";
+    }
+    if(id==3){
+        return "More Info Requested";
+    }
+    if(id==4){
+        return "Waiting for Supervisor Aprroval"
+    }
+    if(id==5){
+        return "Waiting for Department Head Approval";
+    }
+    if(id==6){
+        return "Waiting for Benefits Coordinator Approval";
+    }
+}
 function getIncomingRequestsForSupervisorAndHead(){
 	let username= readCookie("username");
 	console.log("TEST");
