@@ -1,5 +1,6 @@
 package com.ymba.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +53,31 @@ public class EventDaoImpl implements EventDao {
 		return null;
 	}
 	
+	 
+	 
+ 
+	public void registerEvent( int event_typeid, String event_datetime, String location, 
+								String description , String grading_format, 
+								String justification, Double cost) throws SQLException {
+
+		Connection conn = aws.getConnection();
+		String sql = "{ call insert_event(?,?,?,?,?,?,?)";
+		CallableStatement call = conn.prepareCall(sql);
+		call.setInt(1, event_typeid);
+		call.setString(2, event_datetime);
+		call.setString(3,location );
+		call.setString(4, description);
+		call.setString(5, grading_format);
+		call.setString(6, justification);
+		call.setDouble(7, cost);
+		
+		call.execute();	
+}
+
+	 
+	 
+	 
+	 
 	
 }
 	

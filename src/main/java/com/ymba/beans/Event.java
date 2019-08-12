@@ -2,7 +2,7 @@ package com.ymba.beans;
 
 
 public class Event {
-	private int employee_id;
+	private int event_id;
 	private String location;
 	private String description;
 	private String grading_format;
@@ -21,7 +21,7 @@ public class Event {
 
 	public Event(int employee_id, int event_id, int event_type_id, String event_datetime, String location,
 			String description, String grading_format, String justification, String work_missed, double event_cost) {
-		this.employee_id=employee_id;
+		this.event_id=employee_id;
 		this.event_type_id = event_type_id;
 		this.event_datetime = event_datetime;
 		this.location = location;
@@ -33,14 +33,11 @@ public class Event {
 	}
 
 
-	public int getEmployee_id() {
-		return employee_id;
+	public int getEventId() {
+		return event_id;
 	}
 
 
-	public void setEmployee_id(int employee_id) {
-		this.employee_id = employee_id;
-	}
 
 
 	public String getLocation() {
@@ -125,7 +122,7 @@ public class Event {
 
 	@Override
 	public String toString() {
-		return "Event [employee_id=" + employee_id + ", location=" + location + ", description=" + description
+		return "Event [employee_id=" + event_id + ", location=" + location + ", description=" + description
 				+ ", grading_format=" + grading_format + ", justification=" + justification + ", work_missed="
 				+ work_missed + ", event_cost=" + event_cost + ", event_type_id=" + event_type_id + ", event_datetime="
 				+ event_datetime + "]";

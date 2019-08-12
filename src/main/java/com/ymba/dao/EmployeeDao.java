@@ -8,7 +8,7 @@ import com.ymba.beans.Employee;
 
 public interface EmployeeDao {
 	public abstract void createEmployee(String firstname,String lastname, String username, String password,int departement_id,int position_id) throws SQLException;
-	public abstract void registerEvent(int event_typeid,String event_datetime, String location, String description , String grading_format, String justification, Double cost) throws SQLException;
+	
 	public abstract void claimMoney (int employee_id, int event_id)throws SQLException;
 	public abstract void submitGrade(String grade, int event_id)throws SQLException;
 	public abstract void alterAmountRequested(Double amount, int request_id)throws SQLException;

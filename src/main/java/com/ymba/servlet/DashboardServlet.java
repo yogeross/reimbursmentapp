@@ -12,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ymba.connection.AwsConnection;
 import com.ymba.dao.EmployeeDaoImpl;
@@ -45,7 +46,7 @@ public class DashboardServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		HttpSession session = request.getSession();
 		
 		if(checkCredentials(request.getParameter("username"), request.getParameter("password"))) {
 			int employeePosition = edi.getEmployee(request.getParameter("username")).getPosition_id();
@@ -55,6 +56,9 @@ public class DashboardServlet extends HttpServlet {
 				Cookie passwordCookie = new Cookie("password", request.getParameter("username"));
 				response.addCookie(userCookie);
 				response.addCookie(passwordCookie);
+				
+				session.setAttribute("employeeUsername", request.getParameter("username"));
+				
 				request.getRequestDispatcher("dashboard.html").forward(request, response);
 				return;
 				}
