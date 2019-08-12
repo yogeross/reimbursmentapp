@@ -134,9 +134,9 @@ function loadPastRequestsForSupervisorAndHead(request,table){
     table+='<td>' +request.empComments+'</td>';
     table+='<td>' +request.denialReason+'</td>';
     table+='<td>' +request.amountApproval+'</td>';
-    table+='<td>'+'<form method="POST"><input type="hidden" name="requuestID" value="'+request.request_id>+'"><button type="submit" formaction="approve-reimbursment">Approve</button>'+
-           '<button type="submit" formaction="deny-reimbursment">Deny</button>'+
-           '<button type="submit" formaction="requestInfo-reimbursment">Request Info</button>'+'</form>'+'</td>';
+    table+='<td>'+'<form method="POST"><input type="hidden" name="requestID" value="'+request.request_id+'"><button type="submit" formaction="approve-reimbursement">Approve</button>'+
+           '<button type="submit" formaction="deny-reimbursement">Deny</button>'+
+           '<button type="submit" formaction="requestInfo-reimbursement">Request Info</button>'+'</form>'+'</td>';
     return table
 }
 function getStat(id){
