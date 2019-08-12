@@ -80,9 +80,32 @@ function buildSupervisorAndHeadRequestTable(request){
         table=loadPastRequestsForSupervisorAndHead(request[r],table);
         table+='</tr>';
     }
+    document.getElementById("incomingRequests").insertAdjacentHTML('beforeend','<table border=1>'+table+'</table>');
 
 }
-function loadPastRequestsForSupervisorAndHead(request,table){
+function buildBencoTable(request){
+    var table='';
+    let rows = request.length;
+    table+='<tr>';
+    table+='<th>'+"Request ID"+'</th>';
+    table+='<th>' +"Event ID"+'</th>';
+    table+='<th>' +"Date Submitted"+'</th>';
+    table+='<th>' +"Status"+'</th>';
+    table+='<th>' +"Employee Comments"+'</th>';
+    table+='<th>' +"Denial Reason"+'</th>';
+    table+='<th>' +"Amount Approval"+'</th>';
+    table+='<th>'+"Request Options"+'</th>';
+    table+='</tr>';
+    for(let r=0; r<rows;r++){
+        table+='<tr>';
+        table=loadPastRequestsForBenco(request[r],table);
+        table+='</tr>';
+    }
+    document.getElementById("incomingRequestsForBenco").insertAdjacentHTML('beforeend','<table border=1>'+table+'</table>');
+
+}
+
+function loadPastRequestsForBenco(request,table){
     table+='<td>'+request.request_id+'</td>';
     table+='<td>'+request.event_id+'</td>';
     table+='<td>' +request.date+'</td>';
@@ -90,13 +113,62 @@ function loadPastRequestsForSupervisorAndHead(request,table){
     table+='<td>' +request.empComments+'</td>';
     table+='<td>' +request.denialReason+'</td>';
     table+='<td>' +request.amountApproval+'</td>';
-    table+='<td>'+'<button type="submit" id="'+request.request_id+'">Approve</button>'+
-           '<button type="submit" id="'+request.request_id+'">Deny</button>'+
-           '<button type="submit" id="'+request.request_id+'">Request Info</button>'+'</td>';
+    table+='<td>'+'<form method="POST"><input type="hidden" name="requuestID" value="'+request.request_id>+'"><button type="submit" formaction="approve-reimbursment">Approve</button>'+
+    '<button type="submit" formaction="deny-reimbursment">Deny</button>'+
+    '<button type="submit" formaction="requestInfo-reimbursment">Request Info</button>'+'</form>'+'</td>';
+    return table
+}
+function loadPastRequestsForSupervisorAndHead(request,table){
+    table+='<td >'+request.request_id+'</td>';
+    table+='<td>'+request.event_id+'</td>';
+    table+='<td>' +request.date+'</td>';
+    table+='<td>' +request.status+'</td>';
+    table+='<td>' +request.empComments+'</td>';
+    table+='<td>' +request.denialReason+'</td>';
+    table+='<td>' +request.amountApproval+'</td>';
+    table+='<td>'+'<form method="POST"><input type="hidden" name="requuestID" value="'+request.request_id>+'"><button type="submit" formaction="approve-reimbursment">Approve</button>'+
+           '<button type="submit" formaction="deny-reimbursment">Deny</button>'+
+           '<button type="submit" formaction="requestInfo-reimbursment">Request Info</button>'+'</form>'+'</td>';
     return table
 }
 
+function getIncomingRequestsForSupervisorAndHead(){
+	let username= readCookie("username");
+	console.log("TEST");
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            var request =JSON.parse(xhr.responseText);
+            console.log(typeof request);
+            console.log("Printing request to log");
+            console.log(request);
+            buildSupervisorAndHeadRequestTable(request);
+        }
+    }
+    xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username="+username,true);
+    //xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username=MHara5",true);
+    xhr.send();
 
+}
+
+function getIncomingRequestsForBenco(){
+	let username= readCookie("username");
+	console.log("TEST");
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            var request =JSON.parse(xhr.responseText);
+            console.log(typeof request);
+            console.log("Printing request to log");
+            console.log(request);
+            buildBencoTable(request);
+        }
+    }
+    xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username="+username,true);
+    //xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username=MHara5",true);
+    xhr.send();
+
+}
 
 function getPastRequests(){
 	let username= readCookie("username");
@@ -128,7 +200,7 @@ function lateSubmission(event){
     userDate = userDate.split("-");
     userDate = new Date(userDate[0], userDate[1]-1, userDate[2], 0, 0, 0); //Months are zero-indexed
  
-    if (userDate-curDate <= 86400000*3) {//ms per day; 3 days before
+    if (userDate-curDate <= 86400000*7) {//ms per day; 7 days before
       document.getElementById("submitForm").disabled=true;
     }
     else{
@@ -139,10 +211,13 @@ function lateSubmission(event){
 window.onload = function(){
 	console.log("ON LOAD");
 	console.log(document.cookie);
-	getPastRequests();
+    getPastRequests();
+    getIncomingRequestsForSupervisorAndHead();
+    getIncomingRequestsForBenco();
 };
 
 document.querySelector("#date").addEventListener("change",lateSubmission,true);
+
 
 
 
