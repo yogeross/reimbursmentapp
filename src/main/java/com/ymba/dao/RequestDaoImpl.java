@@ -19,7 +19,20 @@ public class RequestDaoImpl {
 	
 	public static AwsConnection aws = AwsConnection.getInstance();
 	
-	
+	public void updateStatus(int status,int requestID ) {
+		Connection conn = aws.getConnection();
+		String sql= "CALL update_status(?,?)";
+		try {
+			CallableStatement call = conn.prepareCall(sql);
+			call.setInt(1,status);
+			call.setInt(2, requestID);
+			call.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	public List<CurrentRequest> getAllRequests() throws SQLException {
 
 		List<CurrentRequest> requestList = new ArrayList<CurrentRequest>();
