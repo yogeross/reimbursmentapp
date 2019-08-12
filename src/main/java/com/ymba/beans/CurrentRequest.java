@@ -3,7 +3,6 @@ package com.ymba.beans;
 
 
 public class CurrentRequest {
-	private int employee_id;
 	private int event_id;
 	private String date;
 	private String status;
@@ -20,7 +19,9 @@ public class CurrentRequest {
 	public CurrentRequest() {
 		
 	}
-	public CurrentRequest (int event_id,String date,String status,String empComments,String denialReason, double amountApproval,int supeID, String supeApprovalDate,int headID,String headApprovalDate,int bencoID,String bencoApprovalDate) {
+	public CurrentRequest (int event_id,String date,String status,String empComments,
+			String denialReason, double amountApproval,int supeID, String supeApprovalDate,
+			int headID,String headApprovalDate,int bencoID,String bencoApprovalDate) {
 		this.event_id= event_id;
 		this.date=date;
 		this.status=status;
@@ -132,15 +133,15 @@ public class CurrentRequest {
 	public void setBencoApprovalDate(String bencoApprovalDate) {
 		this.bencoApprovalDate = bencoApprovalDate;
 	}
-
 	@Override
 	public String toString() {
-		return "ReimbursementRequest [employee_id=" + employee_id + ", event_id=" + event_id + ", date=" + date
-				+ ", status=" + status + ", empComments=" + empComments + ", denialReason=" + denialReason
-				+ ", amountApproval=" + amountApproved + ", supeID=" + supeID + ", supeApprovalDate=" + supeApprovalDate
-				+ ", headID=" + headID + ", headApprovalDate=" + headApprovalDate + ", bencoID=" + bencoID
-				+ ", bencoApprovalDate=" + bencoApprovalDate + "]";
+		return "CurrentRequest [event_id=" + event_id + ", date=" + date + ", status=" + status + ", empComments="
+				+ empComments + ", denialReason=" + denialReason + ", amountApproved=" + amountApproved + ", supeID="
+				+ supeID + ", supeApprovalDate=" + supeApprovalDate + ", headID=" + headID + ", headApprovalDate="
+				+ headApprovalDate + ", bencoID=" + bencoID + ", bencoApprovalDate=" + bencoApprovalDate + "]";
 	}
+
+	
 
 	
 }
