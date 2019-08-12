@@ -230,6 +230,7 @@ function getStat(id){
         return "Waiting for Benefits Coordinator Approval";
     }
 }
+
 function getIncomingRequestsForSupervisorAndHead(){
 	let username= readCookie("username");
 	console.log("TEST");
