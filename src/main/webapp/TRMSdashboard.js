@@ -1,3 +1,20 @@
+
+
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+
+
+
 function logout(){
     window.location.href="logout.html";
 }
@@ -20,7 +37,7 @@ function buildRequestTable(request){
     table+='</tr>';
     for (let r=0;r<rows;r++){
         table+='<tr>';
-        table=loadPastRequests(request,table);
+        table=loadPastRequests(request[r],table);
         table+='</tr>';
     }
     document.getElementById("requests").insertAdjacentHTML('beforeend','<table border=1>'+table+'</table>');
@@ -86,26 +103,31 @@ function loadPastRequests(request, table){
 }
 
 function getPastRequests(){
-	let username=document.getElementById("username").value;
+	let username= readCookie("username");
 	console.log("TEST");
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange=function(){
         if(xhr.readyState==4 && xhr.status==200){
             var request =JSON.parse(xhr.responseText);
+            console.log(typeof request);
             console.log("Printing request to log");
             console.log(request);
             buildRequestTable(request);
         }
     }
     xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username="+username,true);
+    //xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username=MHara5",true);
     xhr.send();
 }
+
+
 
 function lateSubmission(event){
     let curDate =  new Date();
     curDate.setHours(0,0,0,0); //Set to midnight
  
     let userDate = document.getElementById("date").value;
+    console.log("LATE SUBMISSION");
     userDate = userDate.split("-");
     userDate = new Date(userDate[0], userDate[1]-1, userDate[2], 0, 0, 0); //Months are zero-indexed
  
@@ -117,8 +139,9 @@ function lateSubmission(event){
       document.getElementById("submitForm").disabled=false; //reenable in case it was disabled before
     }}
 
-window.onLoad = function(){
+window.onload = function(){
 	console.log("ON LOAD");
+	console.log(document.cookie);
 	getPastRequests();
 };
 

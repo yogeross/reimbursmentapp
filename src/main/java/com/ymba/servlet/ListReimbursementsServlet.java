@@ -33,7 +33,7 @@ public class ListReimbursementsServlet extends HttpServlet {
 		RequestDaoImpl rdao = new RequestDaoImpl();
 		EmployeeDaoImpl edao = new EmployeeDaoImpl();
 		
-		String user = mapper.readValue(request.getParameter("username"), String.class);
+		String user = request.getParameter("username");
 		PrintWriter out = response.getWriter();
 		String requestJSON;
 		//try {

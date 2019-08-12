@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -50,8 +51,11 @@ public class DashboardServlet extends HttpServlet {
 			int employeePosition = edi.getEmployee(request.getParameter("username")).getPosition_id();
 			if(employeePosition==1) {//normal dashboard
 				System.out.println("Login success!");
-				
-				response.sendRedirect("dashboard.html");
+				Cookie userCookie = new Cookie("username", request.getParameter("username"));
+				Cookie passwordCookie = new Cookie("password", request.getParameter("username"));
+				response.addCookie(userCookie);
+				response.addCookie(passwordCookie);
+				request.getRequestDispatcher("dashboard.html").forward(request, response);
 				return;
 				}
 			else if(employeePosition==2) {//supervisor dashboard
