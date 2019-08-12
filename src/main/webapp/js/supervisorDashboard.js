@@ -58,37 +58,7 @@ function readCookie(name) {
 }
 
 
-function estimateCost(){
-    let eventType= document.querySelector("#eventType");
-    let event=eventType.options[eventType.selectedIndex].value;
-    let cost= document.querySelector("#cost").value;
-    let estimate=0;
-    switch (event){
-        case "certify":
-            document.querySelector("#estimate").value="Estimated Cost we cover: $"+cost.toString();
-            break;
-        case "prep":
-                estimate=cost*.75;
-                document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
-                break;
-        case "seminar":
-            estimate=cost*.6;
-            document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
-            break;
-        case "training":
-            estimate= cost*.9;
-                document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
-                break;
-        case "course":
-                estimate=cost*.8;
-                document.querySelector("#estimate").value="Estimated Cost we cover: $"+estimate.toString();
-                break;
-        case "other":
-                estimate=cost*.3;
-                document.querySelector("#estimate").value="Estimated Cost we cover: $"+cost.toString();
-                break;
-    }
-}
+
 
 
 function logout(){
@@ -192,7 +162,7 @@ window.onload = function () {
 
 };
 
-
+document.querySelector("#date").addEventListener("change", lateSubmission, true);
 
 
 
