@@ -9,11 +9,7 @@ function formDisplay() {
     }
 }
 
-var today = new Date();
-var dd = String(today.getDate() + 7).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-week = yyyy + '-' + mm + '-' + dd;
+
 
 
 
@@ -138,9 +134,9 @@ function loadPastRequestsForSupervisorAndHead(request,table){
     table+='<td>' +request.empComments+'</td>';
     table+='<td>' +request.denialReason+'</td>';
     table+='<td>' +request.amountApproval+'</td>';
-    table+='<td>'+'<form method="POST"><input type="hidden" name="requuestID" value="'+request.request_id>+'"><button type="submit" formaction="approve-reimbursment">Approve</button>'+
-           '<button type="submit" formaction="deny-reimbursment">Deny</button>'+
-           '<button type="submit" formaction="requestInfo-reimbursment">Request Info</button>'+'</form>'+'</td>';
+    table+='<td>'+'<form method="POST"><input type="hidden" name="requestID" value="'+request.request_id+'"><button type="submit" formaction="approve-reimbursement">Approve</button>'+
+           '<button type="submit" formaction="deny-reimbursement">Deny</button>'+
+           '<button type="submit" formaction="requestInfo-reimbursement">Request Info</button>'+'</form>'+'</td>';
     return table
 }
 function getStat(id){
@@ -183,51 +179,17 @@ function getIncomingRequestsForSupervisorAndHead(){
 
 }
 
-function getIncomingRequestsForBenco() {
-    let username = readCookie("username");
-    console.log("TEST");
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var request = JSON.parse(xhr.responseText);
-            console.log(typeof request);
-            console.log("Printing request to log");
-            console.log(request);
-            buildBencoTable(request);
-        }
-    }
-    xhr.open("GET", "http://localhost:8080/Project1/list-reimbursements?username=" + username, true);
-    //xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username=MHara5",true);
-    xhr.send();
 
-}
 
-function getPastRequests() {
-    let username = readCookie("username");
-    console.log("TEST");
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var request = JSON.parse(xhr.responseText);
-            console.log(typeof request);
-            console.log("Printing request to log");
-            console.log(request);
-            buildRequestTable(request);
-        }
-    }
-    xhr.open("GET", "http://localhost:8080/Project1/list-reimbursements?username=" + username, true);
-    //xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username=MHara5",true);
-    xhr.send();
 
-}
 
 
 window.onload = function () {
     console.log("ON LOAD");
     console.log(document.cookie);
-    getPastRequests();
+    
     getIncomingRequestsForSupervisorAndHead();
-    getIncomingRequestsForBenco();
+
 };
 
 
