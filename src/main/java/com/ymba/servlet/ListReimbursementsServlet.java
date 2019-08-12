@@ -29,7 +29,7 @@ public class ListReimbursementsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		System.out.println("In do get of ListReimbursement");
 		ObjectMapper mapper=new ObjectMapper();
 		RequestDaoImpl rdao = new RequestDaoImpl();
 		EmployeeDaoImpl edao = new EmployeeDaoImpl();
@@ -43,6 +43,16 @@ public class ListReimbursementsServlet extends HttpServlet {
 		String requestJSON;
 		//try {
 			Employee e = edao.getEmployee(user);
+			
+			if(e.getPositionId() != 1) {
+				requestJSON = mapper.writeValueAsString(rdao.getRequestsForReview(e));
+				System.out.println("PositionId is not 1.");
+			} else {
+				requestJSON = mapper.writeValueAsString(rdao.getRequestsByEmployee(e.getEmployeeID()));
+			}
+			
+			
+			
 			requestJSON = mapper.writeValueAsString(rdao.getRequestsByEmployee(e.getEmployeeID()));
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

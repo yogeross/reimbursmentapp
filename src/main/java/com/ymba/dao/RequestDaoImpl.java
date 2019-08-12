@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ymba.beans.CurrentRequest;
+import com.ymba.beans.Employee;
 import com.ymba.connection.AwsConnection;
 
 
@@ -80,6 +81,43 @@ public class RequestDaoImpl {
 	}
 	
 	
+public List<CurrentRequest> getRequestsForReview(Employee reviewer) {
+		System.out.println("Get requests for review");
+		Connection conn = aws.getConnection();
+		String sql = "SELECT * FROM REQUEST WHERE status_id=?";
+		PreparedStatement ps;
+		
+		int statusId = 4;
+		int departmentId = reviewer.getDepartmentId();
+		EmployeeDaoImpl employeeDao = new EmployeeDaoImpl();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, statusId);
+			ResultSet rs = ps.executeQuery();
+			
+			List<CurrentRequest> requestList = new ArrayList<CurrentRequest>();
+			
+			while (rs.next()) {
+				CurrentRequest cr = new CurrentRequest(rs.getInt("request_id"),rs.getInt("fk_event_id"), rs.getDate("date_submitted").toString(), rs.getInt("status_id"), rs.getString("comments"), rs.getString("denial_reason"), rs.getDouble("amount_approved"), rs.getInt("supervisor_id"), (rs.getDate("supervisor_approval_date") == null) ? null:rs.getDate("supervisor_approval_date").toString(), rs.getInt("dept_head_id"), (rs.getDate("dept_head_approval_date") == null) ? null:rs.getDate("dept_head_approval_date").toString(), rs.getInt("benco_id"), (rs.getDate("benco_approval_date") == null)? null:rs.getDate("benco_approval_date").toString());
+				System.out.println("Printing a request");
+				System.out.println(cr);
+				if (employeeDao.getEmployee(rs.getInt("fk_employee_id")).getDepartmentId() == departmentId) {
+					requestList.add(cr);
+				}
+				
+				
+			}
+
+			return requestList;
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+			return null;
+		} // TODO Fix error handling return null;
+		 
+	}
 	
 	
 	public void createRequest(int employee_id, int event_id) {

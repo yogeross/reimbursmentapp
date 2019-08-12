@@ -62,10 +62,10 @@ public class Employee   {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getDepartementId() {
+	public int getDepartmentId() {
 		return department_id;
 	}
-	public void setDepartementId(int departement_id) {
+	public void setDepartmentId(int departement_id) {
 		this.department_id = departement_id;
 	}
 	public int getPositionId() {

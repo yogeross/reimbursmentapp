@@ -161,6 +161,32 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return null;
 		
 	}
+	
+
+	public Employee getEmployee(int employeeId) {
+		Employee employee=null;
+		Connection conn = aws.getConnection();
+		String sql = "SELECT * FROM employee WHERE employee_id=?";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, employeeId);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()){
+				employee=new Employee(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDouble(8),rs.getInt(9));
+				return employee;
+			}
+			else{
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
 	public void addInfo(String comments, int request_id) throws SQLException {
 		Connection conn = aws.getConnection(); 
 		String sql = "{ call update_amount (?, ?)";
