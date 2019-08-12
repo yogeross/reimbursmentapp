@@ -99,38 +99,9 @@ function logout(){
     window.location.href="logout.html";
 }
 
-function buildRequestTable(request){
-    var table='';
-    let rows= request.length;
-    table+='<tr>';
-    table+='<th>' +"Event ID"+'</th>';
-    table+='<th>' +"Date Submitted"+'</th>';
-    table+='<th>' +"Status"+'</th>';
-    table+='<th>' +"Employee Comments"+'</th>';
-    table+='<th>' +"Denial Reason"+'</th>';
-    table+='<th>' +"Amount Approval"+'</th>';
-    table+='<th>' +"Supervisor ID"+'</th>';
-    table+='</tr>';
-    for (let r=0;r<rows;r++){
-        table+='<tr>';
-        table=loadPastRequests(request[r],table);
-        table+='</tr>';
 
-    }
-    document.getElementById("requests").insertAdjacentHTML('beforeend', '<table border=1>' + table + '</table>');
 
-}
 
-function loadPastRequests(request, table){
-    table+='<td>'+request.event_id+'</td>';
-    table+='<td>' +request.date+'</td>';
-    table+='<td>' +getStat(request.status)+'</td>';
-    table+='<td>' +request.empComments+'</td>';
-    table+='<td>' +request.denialReason+'</td>';
-    table+='<td>' +request.amountApproval+'</td>';
-
-    return table;
-}
 
 
 //supervisor, head of department request table
@@ -155,42 +126,10 @@ function buildSupervisorAndHeadRequestTable(request) {
     document.getElementById("incomingRequests").insertAdjacentHTML('beforeend', '<table border=1>' + table + '</table>');
 
 }
-function buildBencoTable(request) {
-    var table = '';
-    let rows = request.length;
-    table += '<tr>';
-    table += '<th>' + "Request ID" + '</th>';
-    table += '<th>' + "Event ID" + '</th>';
-    table += '<th>' + "Date Submitted" + '</th>';
-    table += '<th>' + "Status" + '</th>';
-    table += '<th>' + "Employee Comments" + '</th>';
-    table += '<th>' + "Denial Reason" + '</th>';
-    table += '<th>' + "Amount Approval" + '</th>';
-    table += '<th>' + "Request Options" + '</th>';
-    table += '</tr>';
-    for (let r = 0; r < rows; r++) {
-        table += '<tr>';
-        table = loadPastRequestsForBenco(request[r], table);
-        table += '</tr>';
-    }
-    document.getElementById("incomingRequestsForBenco").insertAdjacentHTML('beforeend', '<table border=1>' + table + '</table>');
-
-}
 
 
-function loadPastRequestsForBenco(request,table){
-    table+='<td>'+request.request_id+'</td>';
-    table+='<td>'+request.event_id+'</td>';
-    table+='<td>' +request.date+'</td>';
-    table+='<td>' +getStat(request.status)+'</td>';
-    table+='<td>' +request.empComments+'</td>';
-    table+='<td>' +request.denialReason+'</td>';
-    table+='<td>' +request.amountApproval+'</td>';
-    table+='<td>'+'<form method="POST"><input type="hidden" name="requuestID" value="'+request.request_id>+'"><button type="submit" formaction="approve-reimbursment">Approve</button>'+
-    '<button type="submit" formaction="deny-reimbursment">Deny</button>'+
-    '<button type="submit" formaction="requestInfo-reimbursment">Request Info</button>'+'</form>'+'</td>';
-    return table
-}
+
+
 function loadPastRequestsForSupervisorAndHead(request,table){
     table+='<td >'+request.request_id+'</td>';
     table+='<td>'+request.event_id+'</td>';
@@ -291,7 +230,7 @@ window.onload = function () {
     getIncomingRequestsForBenco();
 };
 
-document.querySelector("#date").addEventListener("change", lateSubmission, true);
+
 
 
 
