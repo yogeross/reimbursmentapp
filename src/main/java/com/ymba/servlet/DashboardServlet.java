@@ -31,12 +31,12 @@ public class DashboardServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("Im IN THE GET METHOD");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("IM IN THE GET METHOD");
+		response.getWriter().append("You should not be here. Press back to go back.").append(request.getContextPath());
 		
 		PrintWriter out = response.getWriter();
-		out.println(request.getParameter("username"));
-		out.println(request.getParameter("password"));
+		//out.println(request.getParameter("username"));
+		//out.println(request.getParameter("password"));
 		
 		
 	}
