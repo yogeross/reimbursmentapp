@@ -75,7 +75,6 @@
                             <div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
                                 <div class="form-wrap">
                                     <div class="tab">
-
                                         <div class="tab-content">
                                             <div class="tab-content-inner active" data-content="signup">
                                                 <h3>Reimbursement Form</h3>
@@ -83,7 +82,7 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="eventType">Event Type</label>
-                                                            <select name="events" id="eventType" class="form-control">
+                                                            <select name="eventType" id="eventType" class="form-control">
                                                                 <option value="certify">Certification</option>
                                                                 <option value="prep">Certification Preparation Classes
                                                                 </option>
@@ -97,7 +96,7 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="date">Event Date</label>
-                                                            <input type="date" id="date"
+                                                            <input type="date" name="date" id="date"
                                                                 style="margin-left: 10px; width: 150px;" required>
                                                             <script>
                                                                 date.min = new Date().toISOString().split("T")[0];
@@ -107,14 +106,14 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="time">Event Time</label>
-                                                            <input type="time" id="time"
+                                                            <input type="time" name="time" id="time"
                                                                 style="margin-left: 10px; width: 150px;" required>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="location">Event Location</label>
-                                                            <input type="text" id="location" maxlength="500"
+                                                            <input type="text" name="location" id="location" maxlength="500"
                                                                 class="form-control" required>
                                                         </div>
                                                     </div>
@@ -123,14 +122,14 @@
                                                             <label for="description">Event Desciption</label>
                                                             <textarea id="description"
                                                                 placeholder="Eight week-long course focusing on..."
-                                                                style="resize: vertical;" maxlength="500"
+                                                                style="resize: vertical;" maxlength="500" name="description"
                                                                 class="form-control" required></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="cost">Event Cost</label>
-                                                            <input type="number" id="cost" placeholder="$0" min="0"
+                                                            <input type="number" name="cost" id="cost" placeholder="$0" min="0"
                                                                 onchange="estimateCost()"
                                                                 style="margin-left: 10px; width: 120px;" required />
                                                             <label id="estimate"></label>
@@ -141,7 +140,7 @@
                                                             <label for="justify">Work-Related Justification</label>
                                                             <textarea id="justify"
                                                                 placeholder="Learn the skills and knowledge to improve..."
-                                                                style="resize: vertical;" maxlength="300"
+                                                                style="resize: vertical;" maxlength="300" name="justify"
                                                                 class="form-control" required></textarea>
                                                         </div>
                                                     </div>
@@ -150,7 +149,7 @@
                                                             <label for="gradeFormat">Grading Format</label>
                                                             <textarea id="gradeFormat"
                                                                 placeholder="Passing grade is 80%... &#10Grade is pass/fail..."
-                                                                style="resize: vertical;" maxlength="100"
+                                                                style="resize: vertical;" maxlength="100" name="gradeFormat"
                                                                 class="form-control" required></textarea>
                                                         </div>
                                                     </div>
@@ -159,22 +158,22 @@
                                                             <label for="missed">Amount of Work Missed</label>
                                                             <textarea id="missed"
                                                                 placeholder="Four days... &#10Every Tuesday for two hours..."
-                                                                style="resize: vertical;" maxlength="100"
+                                                                style="resize: vertical;" maxlength="100" name="missed"
                                                                 class="form-control"></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="file">Event Attachment</label>
-                                                            <input type="file" id="eventFile" accept=".pdf, .png, .jpeg, .txt, .doc">
+                                                            <input type="file" name="eventFile" id="eventFile" accept=".pdf, .png, .jpeg, .txt, .doc">
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                             <div class="col-md-12">
                                                                 <label for="file">Attach Approvals</label>
-                                                                <input type="file" id="file" accept=".msg">
+                                                                <input type="file" name="approveFile" id="approveFile" accept=".msg">
                                                                 <label for="approval">Approval Type</label>
-                                                                <select id="approval" class="form-control">
+                                                                <select name="approval" id="approval" class="form-control">
                                                                     <option value="sup">Supervisor</option>
                                                                     <option value="dept">Department Head</option>
                                                                     <option value="benco">Benefit Coordinator</option>
