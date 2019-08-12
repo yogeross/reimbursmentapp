@@ -62,7 +62,7 @@ public class RequestDaoImpl {
 			List<CurrentRequest> requestList = new ArrayList<CurrentRequest>();
 			
 			while (rs.next()) {
-				CurrentRequest cr = new CurrentRequest(rs.getInt("request_id"),rs.getInt("fk_event_id"), rs.getDate("date_submitted").toString(), rs.getString("status"), rs.getString("employee_comments"), rs.getString("disapproval_reason"), rs.getDouble("amount_approved"), rs.getInt("supervisor_id"), rs.getDate("supervisor_approval_date").toString(), rs.getInt("dept_head_id"), rs.getDate("dept_head_approval_date").toString(), rs.getInt("benco_id"), rs.getDate("benco_approval_date").toString());
+				CurrentRequest cr = new CurrentRequest(rs.getInt("request_id"),rs.getInt("fk_event_id"), rs.getDate("date_submitted").toString(), rs.getInt("status_id"), rs.getString("comments"), rs.getString("denial_reason"), rs.getDouble("amount_approved"), rs.getInt("supervisor_id"), rs.getDate("supervisor_approval_date").toString(), rs.getInt("dept_head_id"), rs.getDate("dept_head_approval_date").toString(), rs.getInt("benco_id"), rs.getDate("benco_approval_date").toString());
 				System.out.println("Printing a request");
 				System.out.println(cr);
 				requestList.add(cr);

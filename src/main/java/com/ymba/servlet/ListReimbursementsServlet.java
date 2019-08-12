@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ymba.beans.Employee;
@@ -33,7 +34,11 @@ public class ListReimbursementsServlet extends HttpServlet {
 		RequestDaoImpl rdao = new RequestDaoImpl();
 		EmployeeDaoImpl edao = new EmployeeDaoImpl();
 		
-		String user =request.getParameter("username");
+		HttpSession session = request.getSession();
+		String user =  (String) session.getAttribute("employeeUsername");
+		System.out.println("List reimbursement user: " + user);
+		
+		//String user = request.getParameter("username");
 		PrintWriter out = response.getWriter();
 		String requestJSON;
 		//try {

@@ -6,7 +6,7 @@ public class CurrentRequest {
 	private int request_id;
 	private int event_id;
 	private String date;
-	private String status;
+	private int status;
 	private String empComments;
 	private String denialReason;
 	private double amountApproved;
@@ -20,7 +20,7 @@ public class CurrentRequest {
 	public CurrentRequest() {
 		
 	}
-	public CurrentRequest (int request_id,int event_id,String date,String status,String empComments,
+	public CurrentRequest (int request_id,int event_id,String date,int status,String empComments,
 			String denialReason, double amountApproval,int supeID, String supeApprovalDate,
 			int headID,String headApprovalDate,int bencoID,String bencoApprovalDate) {
 		this.request_id=request_id;
@@ -42,9 +42,7 @@ public class CurrentRequest {
 		return request_id;
 	}
 
-	public void setRequest_id(int event_id) {
-		this.request_id=request_id;
-	}
+
 
 
 	public int getEvent_id() {
@@ -63,11 +61,11 @@ public class CurrentRequest {
 		this.date = date;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
