@@ -1,73 +1,120 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+	Aesthetic by gettemplates.co
+	Twitter: http://twitter.com/gettemplateco
+	URL: http://gettemplates.co
+-->
 <html>
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Traveler &mdash; Free Website Template, Free HTML5 Template by GetTemplates.co</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Website Template by GetTemplates.co" />
+	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+	<meta name="author" content="GetTemplates.co" />
 
-<head>
-    <link rel="stylesheet" href="TRMS.css">
-</head>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+	
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
 
-<body background="background.jpg">
-    <input type="radio" name="nav" id="one" checked="checked" />
-    <label for="one" >Greeting</label>
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
 
-    <input type="radio" name="nav" id="two" />
-    <label for="two">Form</label>
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
 
-    <input type="radio" name="nav" id="three" />
-    <label for="three">Status</label>
-    
-    <label for="four" onclick="logout()">Logout</label>
-    
-    <article class="content one">
-        <h3>Welcome to your homepage</h3>
-        <p>Enjoy the experience</p>
-    </article>
-   
-    <article class="content two">
-        <div class="log-form">
-            <h2>Reimbursement Request Form</h2>
-            <form id="reimbursementForm">
-                <label style="display: inline-block; margin-right: 10px">Select Event Type:</label>
-                <select name="eventType" onchange="estimateCost()" id="eventType" style="font-size: 0.75em; color: #757575;">
-                    <option value="certify">Certification</option>
-                    <option value="prep">Certification Preparation Classes</option>
-                    <option value="seminar">Seminar</option>
-                    <option value="training">Technical Training</option>
-                    <option value="course">University Courses</option>                    
-                    <option value="other">Other</option>
-                </select>
-                <br/><br/>
-                
-    
-                <div style="display: inline-block;">
-                    <label> Date of Event:</label>
-                    <input type="date" name="date" id="date" style="font-size: 0.9em; margin-right: 50px" required />
-                </div>
-                <div style="display: inline-block;">
-                    <label>Time of Event:</label>
-                    <input type="time" name="time" style="font-size: 0.9em; margin-right: 50px" required />
-                </div>
-    
-                
-                <input type="text" id="location" placeholder="Location" required />
-                <textarea id="description" placeholder="Event Description..." maxlength="500" rows="4" cols="52" required></textarea> <br/><br/>
-    
-                <input type="number"  id="cost" placeholder="Price of Event" onchange="estimateCost()" required />
-                <input type="text" id="estimate"  readonly/>
-                <textarea id="justify" placeholder="Work-Related Justification..." maxlength="500" rows="4" cols="52" required></textarea> <br/><br/>
-                
-                
-                <input type="text" id="gradeFormat" placeholder="Grading Format" required />
-                <button type="submit" class="btn" id="submitForm" value="Submit Form">Submit Request</button>
-            </form>
-        </div>
-    </article>
+	</head>
+	<body>
+		
+	<div class="gtco-loader"></div>
+	
+	<div id="page">
 
-    <article class="content three" id="requests">
-        <h3 >Application Info</h3>
-    </article>
-    
-    
-    <script type="text/javascript" src="TRMSdashboard.js"></script>
-</body>
-<!--source https://codepen.io/howbizarre/pen/bEdIB-->
+	
+	<!-- <div class="page-inner"> -->
+			<nav class="gtco-nav" role="navigation">
+					<div class="gtco-container">
+		
+						<div class="row">
+							<div class="col-sm-4 col-xs-12">
+								<div id="gtco-logo"><a href="index.html">TRMS <em>.</em></a></div>
+							</div>
+							<div class="col-xs-8 text-right menu-1">
+								<ul>
+									<li><a href="index.html">Welcome</a></li>
+									<li><a href="dashboard.html">Dashboard</a></li>
+									<li><a href="form.html">Form</a></li>
+									<li><a href="login.html">Register/Login</a></li>
+								</ul>
+							</div>
+						</div>
+		
+					</div>
+				</nav>
+	
+	<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_3.jpg)">
+		<div class="overlay"></div>
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-12 col-md-offset-0 text-center">
+					<div class="row row-mt-15em">
+						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
+							<h1>Employee Dashboard</h1>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<div class="gtco-section">
+		<div class="gtco-container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					<h2>All your personal requests:</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Custom JS-->
+	<script type="text/javascript" src="js/TRMSdashboard.js"></script>
+	
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- countTo -->
+	<script src="js/jquery.countTo.js"></script>
+
+	<!-- Stellar Parallax -->
+	<script src="js/jquery.stellar.min.js"></script>
+
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+	
+	<!-- Datepicker -->
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	
+
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+	</body>
 </html>
+
