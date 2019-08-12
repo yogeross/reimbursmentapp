@@ -52,11 +52,11 @@
 					</div>
 					<div class="col-xs-8 text-right menu-1">
 						<ul>
-							<li><a href="index.html">Welcome</a></li>
-							<li><a href="dashboard.html">Dashboard</a></li>
-							<li><form action="logout" style="display: inline-block;">
-								<input type="submit" value="Logout">
-							</form></li>
+							<li>
+								<form action="logout" style="display: inline-block;">
+									<input type="submit" value="Logout">
+								</form>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -65,14 +65,154 @@
 		</nav>
 
 		<header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
-			style="background-image: url(images/img_3.jpg)">
+			style="background-image: url(images/img_bg_2.jpg)">
 			<div class="overlay"></div>
 			<div class="gtco-container">
 				<div class="row">
 					<div class="col-md-12 col-md-offset-0 text-left">
-						<div class="row row-mt-15em">
+						<div class="row"><br /><br /><br />
+							<h1 style="text-align: center">Welcome to the Tuition Reimbursement Management System</h1>
+							<br />
+                            <h3 style="text-align: center; color: rgb(165, 161, 161)">You are currently logged in as a 
+                                Supervisor. You can insert a new request or you view
+								all department requests.</h3>
 							<div class="col-md-5 mt-text animate-box" data-animate-effect="fadeInUp">
-								<h1>Click on form to expand and fill in. Scroll down to see all requests.</h1>
+								<h1>Click on form to expand and fill in.</h1>
+							</div>
+							<div class="row-mt-15em col-md-6 col-md-push-1 animate-box"
+								data-animate-effect="fadeInRight">
+								<div class="form-wrap">
+									<div class="tab">
+										<div class="tab-content">
+											<div class="tab-content-inner active" data-content="signup">
+												<h3 onclick="formDisplay()">Reimbursement Form</h3>
+												<form id="reimbursementForm" method="POST" style="display: none"
+													action="new-reimbursement-request">
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="eventType">Event Type</label>
+															<select name="eventType" id="eventType"
+																class="form-control">
+																<option value="1">Certification</option>
+																<option value="2">Certification Preparation Classes
+																</option>
+																<option value="3">Seminar</option>
+																<option value="4">Technical Training</option>
+																<option value="5">University Courses</option>
+																<option value="6">Other</option>
+															</select>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="date">Event Date</label>
+															<input type="date" name="date" id="date"
+																style="margin-left: 10px; width: 150px;" required>
+															<script>
+																date.min = new Date().toISOString().split("T")[0];
+															</script>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="time">Event Time</label>
+															<input type="time" name="time" id="time"
+																style="margin-left: 10px; width: 150px;" required>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="location">Event Location</label>
+															<input type="text" name="location" id="location"
+																maxlength="500" class="form-control" required>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="description">Event Desciption</label>
+															<textarea id="description"
+																placeholder="Eight week-long course focusing on..."
+																style="resize: vertical;" maxlength="500"
+																name="description" class="form-control"
+																required></textarea>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="cost">Event Cost</label>
+															<input type="number" name="cost" id="cost" placeholder="$0"
+																min="0" onchange="estimateCost()"
+																style="margin-left: 10px; width: 120px;" required />
+															<label id="estimate"></label>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="justify">Work-Related Justification</label>
+															<textarea id="justify"
+																placeholder="Learn the skills and knowledge to improve..."
+																style="resize: vertical;" maxlength="300" name="justify"
+																class="form-control" required></textarea>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="gradeFormat">Grading Format</label>
+															<textarea id="gradeFormat"
+																placeholder="Passing grade is 80%... &#10Grade is pass/fail..."
+																style="resize: vertical;" maxlength="100"
+																name="gradeFormat" class="form-control"
+																required></textarea>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="missed">Amount of Work Missed</label>
+															<textarea id="missed"
+																placeholder="Four days... &#10Every Tuesday for two hours..."
+																style="resize: vertical;" maxlength="100" name="missed"
+																class="form-control"></textarea>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="file">Event Attachment</label>
+															<input type="file" name="eventFile" id="eventFile"
+																accept=".pdf, .png, .jpeg, .txt, .doc">
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="file">Attach Approvals</label>
+															<input type="file" name="approveFile" id="approveFile"
+																accept=".msg">
+															<label for="approval">Approval Type</label>
+															<select name="approval" id="approval" class="form-control">
+																<option value="null">--none--</option>
+																<option value="sup">Supervisor</option>
+																<option value="dept">Department Head</option>
+																<option value="benco">Benefit Coordinator</option>
+															</select>
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<input type="submit" id="submitForm"
+																class="btn btn-primary btn-block" value="Submit">
+														</div>
+													</div>
+													<div class="row form-group">
+														<div class="col-md-12">
+															<p id="errors" style="color: red"></p>
+														</div>
+													</div>
+													<button type="button" class="btn cancel"
+														onclick="formDisplay()">Close</button>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -81,22 +221,21 @@
 			<br /><br />
 		</header>
 
-
-
 		<div class="gtco-section">
-				<div class="gtco-container">
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2 text-center gtco-heading" name="incomingRequests" id="incomingRequests">
-							<h2>All employee requests:</h2>
-						</div>
+			<div class="gtco-container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center gtco-heading" name="incomingRequests" id="incomingRequests">
+						<h2>View employee requests:</h2>
 					</div>
 				</div>
+			</div>
 		</div>
-			
-		
+
+
+
 
 		<!--Custom JS-->
-		<script type="text/javascript" src="js/supervisorDashboard.js"></script>
+		<script type="text/javascript" src="js/TRMSdashboard.js"></script>
 
 		<!-- jQuery -->
 		<script src="js/jquery.min.js"></script>
