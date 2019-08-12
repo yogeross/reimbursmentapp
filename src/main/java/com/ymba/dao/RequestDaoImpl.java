@@ -1,5 +1,6 @@
 package com.ymba.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,7 +39,7 @@ public class RequestDaoImpl {
 	public List<CurrentRequest> getRequestsByEmployee(int employee_id) {
 		
 		Connection conn = aws.getConnection();
-		String sql = "SELECT * FROM REQUEST WHERE employee_id = ?";
+		String sql = "SELECT * FROM REQUEST WHERE fk_employee_id = ?";
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
@@ -46,21 +47,17 @@ public class RequestDaoImpl {
 			ResultSet rs = ps.executeQuery();
 			
 			List<CurrentRequest> requestList = new ArrayList<CurrentRequest>();
-			if (rs.next()) {
-				
-				while (rs.next()) {
-					requestList.add(new CurrentRequest(rs.getInt("fk_event_id"), rs.getDate("date_submitted").toString(), rs.getString("status"), rs.getString("employee_comments"), rs.getString("denial_reason"), rs.getDouble("amount_approved"), rs.getInt("supervisor_id"), rs.getDate("supervisor_approval_date").toString(), rs.getInt("dept_head_id"), rs.getDate("dept_head_approval_date").toString(), rs.getInt("benco_id"), rs.getDate("benco_approval_date").toString()));
-					
-				}
-				
-				return requestList;
-				
-			} else {
-				// TODO handle this case WAY better
-				return null;
-			}
 			
-	
+			while (rs.next()) {
+				CurrentRequest cr = new CurrentRequest(rs.getInt("fk_event_id"), rs.getDate("date_submitted").toString(), rs.getString("status"), rs.getString("employee_comments"), rs.getString("disapproval_reason"), rs.getDouble("amount_approved"), rs.getInt("supervisor_id"), rs.getDate("supervisor_approval_date").toString(), rs.getInt("dept_head_id"), rs.getDate("dept_head_approval_date").toString(), rs.getInt("benco_id"), rs.getDate("benco_approval_date").toString());
+				System.out.println("Printing a request");
+				System.out.println(cr);
+				requestList.add(cr);
+				
+			}
+
+			return requestList;
+
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -69,6 +66,20 @@ public class RequestDaoImpl {
 		 
 	}
 	
+	
+	
+	
+	public void createRequest(int employee_id, int event_id) {
+		try {
+			CallableStatement insertCall = aws.getConnection().prepareCall("{call insert_request(?, ?)}");
+			insertCall.setInt(1, employee_id);
+			insertCall.setInt(2, event_id);
+			insertCall.execute();
+		} catch (SQLException e) {
+			// TODO Actually handle this exception
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
