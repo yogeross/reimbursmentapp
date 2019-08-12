@@ -67,7 +67,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 		
-	public void createEmployee(String firstname,String lastname, String username, String password,int departement_id,int position_id) throws SQLException {
+	public void createEmployee(String firstname,String lastname, String username, String password, int department_id, int position_id) throws SQLException {
 		Connection conn = aws.getConnection();
 		String sql = "{ call insert_employee (?,?,?,?,?,?,?)";
 		CallableStatement call = conn.prepareCall(sql);
@@ -75,8 +75,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		call.setString(2, lastname);
 		call.setString(3, username);
 		call.setString(4, password);
-		call.setInt(6, departement_id);
-		call.setInt(7,position_id );
+		call.setInt(6, department_id);
+		call.setInt(7, position_id );
 		call.execute();	
 	}
 		     

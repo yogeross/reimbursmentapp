@@ -77,7 +77,8 @@ public class ApproveReimbursementServlet extends HttpServlet {
 		rdao.updateStatus(newStatus, requestId);
 		
 		
-		request.getRequestDispatcher("dashboard").forward(request, response);
+		request.getRequestDispatcher("dashboard.html").forward(request, response);
+		return;
 	}
 
 }

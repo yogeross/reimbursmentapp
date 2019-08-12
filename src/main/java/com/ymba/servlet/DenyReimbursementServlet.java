@@ -26,7 +26,8 @@ public class DenyReimbursementServlet extends HttpServlet {
 
 
 		rdao.updateStatus(2, requestId);
-		request.getRequestDispatcher("dashboard").forward(request, response);
+		request.getRequestDispatcher("dashboard.html").forward(request, response);
+		return;
 		
 	}
 
