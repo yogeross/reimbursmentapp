@@ -54,7 +54,9 @@
 						<ul>
 							<li><a href="index.html">Welcome</a></li>
 							<li><a href="dashboard.html">Dashboard</a></li>
-							<li><a href="logout.html">Logout</a></li>
+							<li><form action="logout" style="display: inline-block;">
+								<input type="submit" value="Logout">
+							</form></li>
 						</ul>
 					</div>
 				</div>
@@ -200,13 +202,6 @@
 													<button type="button" class="btn cancel"
 														onclick="formDisplay()">Close</button>
 												</form>
-												<script>function formDisplay() {
-														if (document.getElementById("reimbursementForm").style.display === "none") {
-															document.getElementById("reimbursementForm").style.display = "block";
-														} else {
-															document.getElementById("reimbursementForm").style.display = "none"
-														}
-													}</script>
 											</div>
 										</div>
 									</div>
@@ -222,14 +217,31 @@
 		<div class="gtco-section">
 			<div class="gtco-container">
 				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center gtco-heading" id="requests">
-						<!--For Supe & Dept incomingRequests-->
+					<div class="col-md-8 col-md-offset-2 text-center gtco-heading" name="requests" id="requests">
 						<h2>All your personal requests:</h2>
 					</div>
 				</div>
 			</div>
 		</div>
 
+		<div class="gtco-section">
+				<div class="gtco-container">
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 text-center gtco-heading" name="incomingRequests" id="incomingRequests">
+							<h2>All employee requests:</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="gtco-section">
+					<div class="gtco-container">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2 text-center gtco-heading" name="incomingRequestsForBenco" id="incomingRequestsForBenco">
+								<h2>All employee requests:</h2>
+							</div>
+						</div>
+					</div>
+				</div>
 		
 
 		<!--Custom JS-->
