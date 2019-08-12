@@ -16,7 +16,7 @@ import com.ymba.dao.RequestDaoImpl;
 /**
  * Servlet implementation class ApproveReimbursementsServlet
  */
-public class ApproveReimbursementsServlet extends HttpServlet {
+public class ApproveReimbursementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 

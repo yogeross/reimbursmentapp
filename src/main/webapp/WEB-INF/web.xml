@@ -53,13 +53,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ApproveReimbursementsServlet</display-name>
-    <servlet-name>ApproveReimbursementsServlet</servlet-name>
-    <servlet-class>com.ymba.servlet.ApproveReimbursementsServlet</servlet-class>
+    <display-name>ApproveReimbursementServlet</display-name>
+    <servlet-name>ApproveReimbursementServlet</servlet-name>
+    <servlet-class>com.ymba.servlet.ApproveReimbursementServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ApproveReimbursementsServlet</servlet-name>
-    <url-pattern>/approve-reimbursements</url-pattern>
+    <servlet-name>ApproveReimbursementServlet</servlet-name>
+    <url-pattern>/approve-reimbursement</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -71,6 +71,24 @@
     <servlet-name>ModifyReimbursementServlet</servlet-name>
     <url-pattern>/modify-reimbursement</url-pattern>
   </servlet-mapping>
-
-
+  <servlet>
+    <description></description>
+    <display-name>DenyReimbursementServlet</display-name>
+    <servlet-name>DenyReimbursementServlet</servlet-name>
+    <servlet-class>com.ymba.servlet.DenyReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DenyReimbursementServlet</servlet-name>
+    <url-pattern>/deny-reimbursement</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RequestReimbursementInfo</display-name>
+    <servlet-name>RequestReimbursementInfo</servlet-name>
+    <servlet-class>com.ymba.servlet.RequestReimbursementInfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestReimbursementInfo</servlet-name>
+    <url-pattern>/request-info</url-pattern>
+  </servlet-mapping>
 </web-app>
