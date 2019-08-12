@@ -44,7 +44,6 @@ function buildRequestTable(request){
     document.getElementById("requests").insertAdjacentHTML('beforeend','<table border=1>'+table+'</table>');
     
 }
-
 function loadPastRequests(request, table){
     table+='<td>'+request.event_id+'</td>';
     table+='<td>' +request.date+'</td>';
@@ -59,19 +58,48 @@ function loadPastRequests(request, table){
     table+='<td>' +request.bencoID+'</td>';
     table+='<td>' +request.bencoApprovalDate+'</td>';
     return table;
-    // document.getElementById("event_id").innerHTML=request.event_id;
-    // document.getElementById("date").innerHTML=request.date;
-    // document.getElementById("status").innerHTML=request.status;
-    // document.getElementById("empComments").innerHTML=request.empComments;
-    // document.getElementById("denialReason").innerHTML=request.denialReason;
-    // document.getElementById("amountApproval").innerHTML=request.amountApproval;
-    // document.getElementById("supeID").innerHTML=request.supeID;
-    // document.getElementById("supeApprovalDate").innerHTML=request.supeApprovalDate;
-    // document.getElementById("headID").innerHTML=request.headID;
-    // document.getElementById("headApprovalDate").innerHTML=request.headApprovalDate;
-    // document.getElementById("bencoID").innerHTML=request.bencoID;
-    // document.getElementById("bencoApprovalDate").innerHTML=request.bencoApprovalDate;
 }
+
+
+//supervisor, head of department request table
+function buildSupervisorAndHeadRequestTable(request){
+    var table='';
+    let rows = request.length;
+    table+='<tr>';
+    table+='<th>'+"Request ID"+'</th>';
+    table+='<th>' +"Event ID"+'</th>';
+    table+='<th>' +"Date Submitted"+'</th>';
+    table+='<th>' +"Status"+'</th>';
+    table+='<th>' +"Employee Comments"+'</th>';
+    table+='<th>' +"Denial Reason"+'</th>';
+    table+='<th>' +"Amount Approval"+'</th>';
+    table+='<th>'+"Request Options"+'</th>';
+    table+='</tr>';
+    for(let r=0; r<rows;r++){
+        table+='<tr>';
+        table=loadPastRequestsForSupervisorAndHead(request[r],table);
+        table+='</tr>';
+    }
+
+}
+function loadPastRequestsForSupervisorAndHead(request,table){
+    table+='<td>'+request.request_id+'</td>';
+    table+='<td>'+request.event_id+'</td>';
+    table+='<td>' +request.date+'</td>';
+    table+='<td>' +request.status+'</td>';
+    table+='<td>' +request.empComments+'</td>';
+    table+='<td>' +request.denialReason+'</td>';
+    table+='<td>' +request.amountApproval+'</td>';
+    table+='<td>'+'<label for="eventType">'+'Action'+'</label>'+
+    '<select name="chooseAction" id="chooseAction" class="form-control">'+
+        '<option value="1">'+"Approve"+'</option>'+
+        '<option value="2">'+"Deny"+'</option>'+
+        '<option value="3">'+"Request Info"+'</option>'+
+    '</select>'+'</td>';
+    return table;
+}
+
+
 
 function getPastRequests(){
 	let username= readCookie("username");
