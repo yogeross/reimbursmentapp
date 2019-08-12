@@ -90,13 +90,10 @@ function loadPastRequestsForSupervisorAndHead(request,table){
     table+='<td>' +request.empComments+'</td>';
     table+='<td>' +request.denialReason+'</td>';
     table+='<td>' +request.amountApproval+'</td>';
-    table+='<td>'+'<label for="eventType">'+'Action'+'</label>'+
-    '<select name="chooseAction" id="chooseAction" class="form-control">'+
-        '<option value="1">'+"Approve"+'</option>'+
-        '<option value="2">'+"Deny"+'</option>'+
-        '<option value="3">'+"Request Info"+'</option>'+
-    '</select>'+'</td>';
-    return table;
+    table+='<td>'+'<button type="submit" id="'+request.request_id+'">Approve</button>'+
+           '<button type="submit" id="'+request.request_id+'">Deny</button>'+
+           '<button type="submit" id="'+request.request_id+'">Request Info</button>'+'</td>';
+    return table
 }
 
 

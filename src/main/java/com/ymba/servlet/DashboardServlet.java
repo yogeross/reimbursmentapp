@@ -66,6 +66,12 @@ public class DashboardServlet extends HttpServlet {
 				// TODO Display the dashboard
 				System.out.println("Login success!");
 				//re.forward("supeDashboard.html");
+				Cookie userCookie = new Cookie("username", request.getParameter("username"));
+				Cookie passwordCookie = new Cookie("password", request.getParameter("username"));
+				response.addCookie(userCookie);
+				response.addCookie(passwordCookie);
+				
+				session.setAttribute("employeeUsername", request.getParameter("username"));
 				request.getRequestDispatcher("supeDashboard.html").forward(request, response);
 				return;
 				}
@@ -73,12 +79,24 @@ public class DashboardServlet extends HttpServlet {
 				// TODO Display the dashboard
 				System.out.println("Login success!");
 				//response.sendRedirect("deptHeadDashboard.html");
+				Cookie userCookie = new Cookie("username", request.getParameter("username"));
+				Cookie passwordCookie = new Cookie("password", request.getParameter("username"));
+				response.addCookie(userCookie);
+				response.addCookie(passwordCookie);
+				
+				session.setAttribute("employeeUsername", request.getParameter("username"));
 				request.getRequestDispatcher("deptHeadDashboard.html").forward(request, response);
 				return;
 			}
 			else {//benco dashboard
 				// TODO Display the dashboard
 				System.out.println("Login success!");
+				Cookie userCookie = new Cookie("username", request.getParameter("username"));
+				Cookie passwordCookie = new Cookie("password", request.getParameter("username"));
+				response.addCookie(userCookie);
+				response.addCookie(passwordCookie);
+				
+				session.setAttribute("employeeUsername", request.getParameter("username"));
 				request.getRequestDispatcher("bencoDashboard.html").forward(request, response);
 				return;
 			}
