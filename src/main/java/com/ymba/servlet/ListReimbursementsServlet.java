@@ -53,7 +53,7 @@ public class ListReimbursementsServlet extends HttpServlet {
 			
 			
 			
-			requestJSON = mapper.writeValueAsString(rdao.getRequestsByEmployee(e.getEmployeeID()));
+			//requestJSON = mapper.writeValueAsString(rdao.getRequestsByEmployee(e.getEmployeeID()));
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			out.print(requestJSON);
