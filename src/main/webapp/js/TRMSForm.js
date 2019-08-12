@@ -25,27 +25,27 @@ function estimateCost(){
     var cost= document.getElementById("cost").value;
     var estimate=0;
     switch (event){
-        case "certify":
+        case "1":
        		estimate=cost;
             document.getElementById("estimate").innerHTML="Estimated Cost we cover: $"+estimate.toString();
             break;
-         case "training":
+         case "2":
             estimate=Math.round((cost*.9) * 100) / 100;
             document.getElementById("estimate").innerHTML="Estimated Cost we cover: $"+estimate.toString();
             break;
-        case "course":
+        case "3":
             estimate=Math.round((cost*.8) * 100) / 100;;
             document.getElementById("estimate").innerHTML="Estimated Cost we cover: $"+estimate.toString();
             break;
-        case "prep":
+        case "4":
             estimate=Math.round((cost*.75) * 100) / 100;
             document.getElementById("estimate").innerHTML="Estimated Cost we cover: $"+estimate.toString();
             break;
-        case "seminar":
+        case "5":
             estimate=Math.round((cost*.6) * 100) / 100;
             document.getElementById("estimate").innerHTML="Estimated Cost we cover: $"+estimate.toString();
             break;
-        case "other":
+        case "6":
                 estimate=Math.round((cost*.3) * 100) / 100;;
                 document.getElementById("estimate").innerHTML="Estimated Cost we cover: $"+cost.toString();
                 break;
