@@ -9,11 +9,7 @@ function formDisplay() {
     }
 }
 
-var today = new Date();
-var dd = String(today.getDate() + 7).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
-week = yyyy + '-' + mm + '-' + dd;
+
 
 
 
@@ -184,51 +180,14 @@ function getIncomingRequestsForSupervisorAndHead(){
 }
 
 
-function getPastRequests() {
-    let username = readCookie("username");
-    console.log("TEST");
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var request = JSON.parse(xhr.responseText);
-            console.log(typeof request);
-            console.log("Printing request to log");
-            console.log(request);
-            buildRequestTable(request);
-        }
-    }
-    xhr.open("GET", "http://localhost:8080/Project1/list-reimbursements?username=" + username, true);
-    //xhr.open("GET","http://localhost:8080/Project1/list-reimbursements?username=MHara5",true);
-    xhr.send();
 
-}
 
-function buildRequestTable(request){
-    var table='';
-    let rows= request.length;
-    table+='<tr>';
-    table+='<th>' +"Event ID"+'</th>';
-    table+='<th>' +"Date Submitted"+'</th>';
-    table+='<th>' +"Status"+'</th>';
-    table+='<th>' +"Employee Comments"+'</th>';
-    table+='<th>' +"Denial Reason"+'</th>';
-    table+='<th>' +"Amount Approval"+'</th>';
-    table+='<th>' +"Supervisor ID"+'</th>';
-    table+='</tr>';
-    for (let r=0;r<rows;r++){
-        table+='<tr>';
-        table=loadPastRequestsForSupervisorAndHead(request[r],table);
-        table+='</tr>';
 
-    }
-    document.getElementById("requests").insertAdjacentHTML('beforeend', '<table border=1>' + table + '</table>');
-
-}
 
 window.onload = function () {
     console.log("ON LOAD");
     console.log(document.cookie);
-    getPastRequests();
+    
     getIncomingRequestsForSupervisorAndHead();
 
 };
