@@ -48,13 +48,12 @@
 
                 <div class="row">
                     <div class="col-sm-4 col-xs-12">
-                        <div id="gtco-logo"><a href="index.html">TRMS <em>.</em></a></div>
+                        <div id="gtco-logo">TRMS <em>.</em></div>
                     </div>
                     <div class="col-xs-8 text-right menu-1">
                         <ul>
                             <li><a href="index.html">Welcome</a></li>
                             <li><a href="dashboard.html">Dashboard</a></li>
-                            <li><a href="form.html">Form</a></li>
                             <li><a href="login.html">Register/Login</a></li>
                         </ul>
                     </div>
@@ -63,7 +62,8 @@
             </div>
         </nav>
 
-        <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner" style="background-image: url(images/img_6.jpg)">
+        <header id="gtco-header" class="gtco-cover gtco-cover-md" role="banner"
+            style="background-image: url(images/img_6.jpg)">
             <div class="overlay"></div>
             <div class="gtco-container">
                 <div class="row">
@@ -77,12 +77,14 @@
                                     <div class="tab">
                                         <div class="tab-content">
                                             <div class="tab-content-inner active" data-content="signup">
-                                                <h3>Reimbursement Form</h3>
-                                                <form id="reimbursementForm" method="POST" action="new-reimbursement-request">
+                                                <h3 onclick="formDisplay()">Reimbursement Form</h3>
+                                                <form id="reimbursementForm" method="POST" style="display: none"
+                                                    action="new-reimbursement-request">
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="eventType">Event Type</label>
-                                                            <select name="eventType" id="eventType" class="form-control">
+                                                            <select name="eventType" id="eventType"
+                                                                class="form-control">
                                                                 <option value="1">Certification</option>
                                                                 <option value="2">Certification Preparation Classes
                                                                 </option>
@@ -113,8 +115,8 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="location">Event Location</label>
-                                                            <input type="text" name="location" id="location" maxlength="500"
-                                                                class="form-control" required>
+                                                            <input type="text" name="location" id="location"
+                                                                maxlength="500" class="form-control" required>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
@@ -122,15 +124,16 @@
                                                             <label for="description">Event Desciption</label>
                                                             <textarea id="description"
                                                                 placeholder="Eight week-long course focusing on..."
-                                                                style="resize: vertical;" maxlength="500" name="description"
-                                                                class="form-control" required></textarea>
+                                                                style="resize: vertical;" maxlength="500"
+                                                                name="description" class="form-control"
+                                                                required></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="cost">Event Cost</label>
-                                                            <input type="number" name="cost" id="cost" placeholder="$0" min="0"
-                                                                onchange="estimateCost()"
+                                                            <input type="number" name="cost" id="cost" placeholder="$0"
+                                                                min="0" onchange="estimateCost()"
                                                                 style="margin-left: 10px; width: 120px;" required />
                                                             <label id="estimate"></label>
                                                         </div>
@@ -149,8 +152,9 @@
                                                             <label for="gradeFormat">Grading Format</label>
                                                             <textarea id="gradeFormat"
                                                                 placeholder="Passing grade is 80%... &#10Grade is pass/fail..."
-                                                                style="resize: vertical;" maxlength="100" name="gradeFormat"
-                                                                class="form-control" required></textarea>
+                                                                style="resize: vertical;" maxlength="100"
+                                                                name="gradeFormat" class="form-control"
+                                                                required></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
@@ -165,32 +169,36 @@
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
                                                             <label for="file">Event Attachment</label>
-                                                            <input type="file" name="eventFile" id="eventFile" accept=".pdf, .png, .jpeg, .txt, .doc">
+                                                            <input type="file" name="eventFile" id="eventFile"
+                                                                accept=".pdf, .png, .jpeg, .txt, .doc">
                                                         </div>
                                                     </div>
-                                                    <div class="row form-group">
-                                                            <div class="col-md-12">
-                                                                <label for="file">Attach Approvals</label>
-                                                                <input type="file" name="approveFile" id="approveFile" accept=".msg">
-                                                                <label for="approval">Approval Type</label>
-                                                                <select name="approval" id="approval" class="form-control">
-                                                                    <option value="sup">Supervisor</option>
-                                                                    <option value="dept">Department Head</option>
-                                                                    <option value="benco">Benefit Coordinator</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
                                                     <div class="row form-group">
                                                         <div class="col-md-12">
-                                                            <input type="submit" id="submitForm" class="btn btn-primary btn-block"
-                                                                value="Submit">
+                                                            <label for="file">Attach Approvals</label>
+                                                            <input type="file" name="approveFile" id="approveFile"
+                                                                accept=".msg">
+                                                            <label for="approval">Approval Type</label>
+                                                            <select name="approval" id="approval" class="form-control">
+                                                                <option value="sup">Supervisor</option>
+                                                                <option value="dept">Department Head</option>
+                                                                <option value="benco">Benefit Coordinator</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="row form-group">
-                                                            <div class="col-md-12">
-                                                                <p id="errors" style="color: red"></p>
-                                                            </div>
+                                                        <div class="col-md-12">
+                                                            <input type="submit" id="submitForm"
+                                                                class="btn btn-primary btn-block" value="Submit">
                                                         </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <p id="errors" style="color: red"></p>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="btn cancel"
+                                                        onclick="formDisplay()">Close</button>
                                                 </form>
                                             </div>
                                         </div>
